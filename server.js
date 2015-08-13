@@ -28,6 +28,7 @@ var server = http.createServer(app).listen(app.get('port'), app.get('ip'), funct
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var io = require('socket.io').listen(server);   
+/*var io = require('socket.io').listen(server);   
 var ss = require('socket.io-stream');
 var path = require('path');
+*/
