@@ -1,0 +1,532 @@
+/*
+A custom Bootstrap 3.2 'Holo' style theme
+from http://bootply.com
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+ 
+html,body {
+  height: 100%;
+  font-family: 'Droid Sans Mono', sans-serif;
+}
+
+p,h1,h2,h3,h4 {
+  font-family: 'Droid Sans Mono', sans-serif;
+}
+
+hr {
+  border-color:#191919;
+}
+
+
+body {
+  padding-top: 51px; 
+  background: #1E1E1E;
+  color: #f9f9f9;
+}
+a {
+  color:#bcbcbc;
+}
+ 
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #sidebar {
+    background-color:#3b3b3b;
+    padding-top:0;
+  }
+  #sidebar .nav>li {
+    color: #ddd;
+    background: linear-gradient(#3E3E3E, #383838);
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #2E2E2E;
+    padding-left:10px;
+  }
+  #sidebar .nav>li:first-child {
+    border-top:0;
+  }
+  #sidebar .nav>li>a {
+    color: #ddd;
+  }
+  #sidebar .nav>li>a>img {
+    max-width: 14px;
+  }
+  #sidebar .nav>li>a:hover, #sidebar .nav>li>a:focus {
+    text-decoration: none;
+    background: linear-gradient(#373737, #323232);
+    color: #fff;  
+  }
+  #sidebar .nav .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+  }
+  #sidebar .nav a:hover .caret{
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+  }
+}
+
+/* theme */
+.btn,.form-control,.alert,.progress,.panel,.list-group,.well,.list-group-item:first-child {border-radius:1px;box-shadow:0 0 0;}
+.btn {border-color:transparent;}
+.btn-default,.well {
+  background-color:#cccccc;
+  border-color:#c0c0c0;
+}
+.btn-primary,.label-primary,.list-group-item.active,.list-group-item.active:hover,.list-group-item.active:focus,.btn.active,a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+   background-color:#0099CC;
+   border-color:transparent;
+}
+.btn-info,.label-info,.progress-bar-info {
+  background-color:#33b5e5;
+}
+.btn-success,.label-success,.progress-bar-success {
+  background-color:#669900;
+}
+.btn-danger,.label-danger,.progress-bar-danger {
+  background-color:#FF4444;
+}
+.btn-warning,.label-warning,.progress-bar-warning {
+  background-color:#FFBB33;
+  color:#444444;
+}
+.nav-tabs>li>a {
+  border-radius:0;
+}
+     
+h3,h4,h5,.panel {
+   color:#555555;
+}
+.panel hr {
+   border-color:#efefef;
+}
+
+
+/*Custom */
+
+#logo-text-md{
+      font-size: 500%;
+      color:white;
+
+}
+
+#logo-text-xs{
+      font-size: 250%;
+      color:white;
+}
+
+#logo-text-sm{
+      font-size: 350%;
+      color:white;
+}
+    #content{
+      margin-top: 5%;
+    }
+    
+  
+    body{
+      background-color: white;
+    }
+    #online_users_container{
+      margin-top: 13%;
+    }
+
+    #message-window{
+      border: 1px solid #DDDCE0;
+      overflow-y: scroll;
+      overflow-x:hidden;
+
+      height: 80px;
+
+      
+    }
+
+    #footer-top{
+
+      background: 
+        linear-gradient(
+          #A7D1D9,
+          /*#74C7D6, */
+          #2CBFD9
+        );
+      
+      -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  moz-box-shadow:  0px 0px 111px 0px rgba(136,239,252,0.33);
+  webkit-box-shadow: 0px 0px 111px 0px rgba(136,239,252,0.33);
+  box-shadow:  0px 0px 111px 0px rgba(136,239,252,0.33);
+  height: 40px;
+  }
+  #footer-bottom{
+    height: 120px;
+    background: linear-gradient(#373737, #323232);
+    -webkit-box-shadow: 0px 0px 78px 0px rgba(0,0,0,0.23);
+    box-shadow: 0px 0px 78px 0px rgba(0,0,0,0.23);
+    moz-box-shadow: 0px 0px 78px 0px rgba(0,0,0,0.23);
+  }
+  #configuration{   
+    opacity: 0.65;
+    background-color:;
+    background: #F5F5F5;
+    width: 90px;
+    border-radius: 30px 30px 30px 30px;
+  } 
+
+ .online-user{
+    background-color: rgba(73, 242, 76, 0.6);
+  }
+  #contacts{
+    height: 180px;
+    /*overflow-y:hidden; */
+    border-radius: 30px 0px 0px  30px;
+  }
+  #contacts .panel-body{ 
+        height: 100px;
+   max-height: 100px; 
+    overflow-y:scroll; 
+    overflow-x:hidden;
+    background-color: #F7F7F7;
+    border-radius: 0px 0px 0px  30px;
+  }
+
+  #contacts .panel-heading{
+     background: linear-gradient(#373737, #323232);
+       border-radius: 30px 0px 0px  0px;
+
+  }
+
+#contacts .panel-heading h3{
+     color:white;
+     font-family: 'arial', ;
+     font-weight: bold;
+  }
+
+  .online-contact{
+    display:inline-block;
+    zoom:1;
+    line-height:normal;
+    white-space:nowrap;
+    vertical-align:middle;
+    text-align:center;
+    -webkit-user-drag:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    font-family:inherit;
+    font-size:100%;
+    padding:.5em 1.2em ; 
+    color:rgba(0,0,0,.8);
+    border:1px solid #999;
+    border:0 rgba(0,0,0,0);
+    text-decoration:none;
+    opacity: 0.65;  
+    color:#ffffff;
+    background-color:#2CBFD9;
+    border-radius: 30px;
+    cursor:pointer;
+    margin-bottom: 18px
+}
+
+.online-contact:hover{
+  font-size: 105%;
+  font-weight: bold;
+    -webkit-box-shadow: 0px 0px 78px 0px rgba(0,0,0,0.23);
+    box-shadow: 0px 0px 78px 0px rgba(0,0,0,0.23);
+    moz-box-shadow: 0px 0px 78px 0px rgba(0,0,0,0.23);
+  
+}
+
+hr.style-two{
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 1px black;
+    opacity: 0.33;
+    width: 42px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+hr.style-two:after {  /* Not really supposed to work, but does */
+    content: "\00a0";  /* Prevent margin collapse */
+}
+#header-nav{
+  background: linear-gradient(#373737, #454343, #4D4A4A);
+}
+
+.bread-crumb{
+  color:white;
+  margin-top: -14px;
+  padding: 0px;
+}
+#company-info li{
+  list-style-type: none;
+  
+}
+.company-info-container{
+  padding-top: 2px;
+  width: 40px;
+  height: 30px;
+  border-radius: 8px 25px 25px 8px;
+  background-color: #4F4C4C;
+
+}
+
+ul.company-info-row {
+  padding-left: 0px;
+  display: inline-block;
+
+}
+ul.company-info-row li{
+  display: inline-block;
+
+}
+
+.company-info-text{
+  margin-top: -25px;
+  margin-left: 52px;
+}
+.company-icon{
+  font-size: 25px;
+  margin-left: 5px;
+  
+}
+
+
+#login-container{
+  width: 300px;
+  height: 300px;
+  border-radius: 30px 30px 30px 30px;
+  margin:  auto;  
+  overflow: hidden;
+    
+     border-width: 3px;
+    border-style: solid;
+   /* -webkit-border-image: 
+      -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;*/
+    -webkit-border-image: 
+      -webkit-linear-gradient(white, #EDF2F2, #E1F0F0, white) 1 100%;
+   /* -moz-border-image:
+      -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
+    -o-border-image:
+      -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+    border-image:
+      linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;*/
+}
+
+#login-header{
+  height: 45px;
+  background-color: #2E383B;
+  opacity: 0.08;
+}
+
+#login-submit{
+  display: block;
+  position: relative;
+  margin-top: 0px;
+  width: 100%;
+  margin-left:auto;
+  height: 44px;  
+  background-color: #2CBFD9;
+  opacity: 0.8;
+  border:1px solid  #2CBFD9;
+  border-radius: 4px 4px 20px 20px;
+  font-family: 'Droid Sans Mono', ;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 120%;
+}
+#login-submit:active{
+   opacity: 1;
+}
+
+#login-input{
+    margin-top: 50px;
+}
+
+.login-icon{
+  opacity: 0.4;
+  color: #C5D6D9;
+  font-size: 140%;
+}
+#login-container input{
+  opacity: 0.4;
+  border-radius: 7px 7px 7px 7px;
+  font-style: italic;
+
+}
+
+
+#login-middle-logo{
+  background-color: #2E383B;
+  opacity: 0.10;  
+  margin-top: 30px;
+  height: 50px;
+  color:white;
+}
+#login-middle-logo span{
+  margin-left: 42%; ;
+  font-size: 320%;
+  color: #D5EAED;
+}
+
+
+/*@media  (max-width: 600px) {
+  body{
+    background-color: red;
+  }
+
+  #top-part, #bottom-part{
+    margin-left: -2.5%;
+    width: 99%;
+  }
+  
+}
+
+
+@media (min-width: 415px) and (max-width: 500px)  {
+  body{
+    background-color: blue;
+  }
+
+  #top-part, #bottom-part{
+    margin-left: -2.5%;
+    width: 98%;
+    padding-left: 0px;
+  }
+  
+}
+}
+*/
+
+.chatbox .panel-primary{
+  border: none;
+}
+.chatbox .panel-body{
+  margin: 0px -15px 0px -15px;
+  border: 1px solid #49C1D6;
+}
+
+.chatbox .panel-primary > .panel-heading {
+    background-color: #49C1D6;
+    border-radius: 15px 15px 0px 0px;
+    font-weight: bold;
+} 
+
+.chatbox .panel-primary > .panel-heading h3{
+    font-weight: bold;
+} 
+/*.cloud{
+  width: 110px;
+  font-size: 85%;
+  
+}
+
+.cloud, .cloud-arrow {
+border-radius: 15px 0px 15px 15px;
+}
+.cloud-msg{
+  
+}
+*/
+
+.bubble-right {
+margin: 0px 25px 3px 0px;
+float: right;
+color:black;
+ word-break:break-word;
+position: relative;
+width: 100px;
+padding: 5px 5px 8px 8px;
+background: #DFEFF2;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+border: #F5F5F5 solid 2px;
+}
+
+.bubble-right:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 8px 0 8px 9px;
+border-color: transparent #DFEFF2;
+display: block;
+width: 0;
+z-index: 1;
+right: -9px;
+top: 12px;
+}
+
+ 
+
+.bubble-left
+{
+
+margin: 0px 0px 3px 25px;
+  color:black;
+position: relative;
+width: 100px;
+
+ word-break:break-word;
+padding: 5px 5px 8px 8px;
+background: #EDEDED;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+.bubble-left:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 8px 9px 8px 0;
+border-color: transparent #EDEDED;
+display: block;
+width: 0;
+z-index: 1;
+left: -9px;
+top: 12px;
+}
+
+ 
