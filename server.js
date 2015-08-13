@@ -29,6 +29,5 @@ var server = http.createServer(app).listen(app.get('port'), app.get('ip'), funct
 });
 
 var io = require('socket.io').listen(server);   
-/*var ss = require('socket.io-stream');
+var ss = require('socket.io-stream');
 var path = require('path');
-*/
