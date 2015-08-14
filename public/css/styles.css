@@ -408,35 +408,6 @@ ul.company-info-row li{
   color: #D5EAED;
 }
 
-
-/*@media  (max-width: 600px) {
-  body{
-    background-color: red;
-  }
-
-  #top-part, #bottom-part{
-    margin-left: -2.5%;
-    width: 99%;
-  }
-  
-}
-
-
-@media (min-width: 415px) and (max-width: 500px)  {
-  body{
-    background-color: blue;
-  }
-
-  #top-part, #bottom-part{
-    margin-left: -2.5%;
-    width: 98%;
-    padding-left: 0px;
-  }
-  
-}
-}
-*/
-
 .chatbox .panel-primary{
   border: none;
 }
@@ -454,19 +425,10 @@ ul.company-info-row li{
 .chatbox .panel-primary > .panel-heading h3{
     font-weight: bold;
 } 
-/*.cloud{
-  width: 110px;
-  font-size: 85%;
-  
-}
 
-.cloud, .cloud-arrow {
-border-radius: 15px 0px 15px 15px;
+.chatbox textarea{
+  resize:none;
 }
-.cloud-msg{
-  
-}
-*/
 
 .bubble-right {
 margin: 0px 25px 3px 0px;
@@ -474,7 +436,7 @@ float: right;
 color:black;
  word-break:break-word;
 position: relative;
-width: 100px;
+width: 140px;
 padding: 5px 5px 8px 8px;
 background: #DFEFF2;
 -webkit-border-radius: 10px;
@@ -503,11 +465,10 @@ top: 12px;
 {
 
 margin: 0px 0px 3px 25px;
-  color:black;
+color:black;
 position: relative;
-width: 100px;
-
- word-break:break-word;
+width: 140px;
+word-break:break-word;
 padding: 5px 5px 8px 8px;
 background: #EDEDED;
 -webkit-border-radius: 10px;

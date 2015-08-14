@@ -33,10 +33,9 @@ var connected = {};
 
 io.sockets.on('connection', function (socket) {     
     socket.on('userLogin', function(data) {
-      
-       if(users.indexOf(data["username"]) == -1 )   
-        users[data.username] = socket;
-       for (var u in users){
+        if(users.indexOf(data["username"]) == -1 )
+            users[data.username] = socket;
+        for (var u in users){
             connected[u] = {username: u, age: data.age};
         }
 

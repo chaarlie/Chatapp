@@ -13,9 +13,11 @@ chatApp.config(['$routeProvider', function($routeProvider){
         controller:'chatController'
 
     })
-}]).run(function ($rootScope) {
+}]).run(function ($rootScope, $cookies) {
     $rootScope.messages = [];
     $rootScope.chatboxes  = {};
+    $rootScope.username  = $cookies['username'];
+    
 }).factory(
 'handleLogin',
 function($http, $location ) {
@@ -165,17 +167,12 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
 
             scope.$on('message', function(event, data){
           
-
                 if(element.attr("id") == "chatbox-" + data.from){
                     
                     element.data('to', data.from);
                      
                     container = scope.$root.messages[data.from];
                     container.push({text: data.message, person: data.from });
-
-                    var sentLength = $("#message-window .chat-bubble").length ;
-                    $($("#message-window .chat-bubble")[sentLength-2]).addClass('bubble-left');
-                   
                 }
  
             });
@@ -195,20 +192,12 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
 
                     container.push({text: textInput.val(), person: $cookies['username']});
                     displayRef.append("\n" +  $cookies['username'] + ": " + $.trim(textInput.val()) ); 
-                    
-                    
 
                     socket.emit('msgToServer', {message: $.trim(textInput.val()), from: $cookies['username'], to: scope.msgFrom });
-                    
-                    var sentLength = $("#message-window .chat-bubble").length ;
-                    $($("#message-window .chat-bubble")[sentLength-1]).addClass('bubble-right');
 
                     textInput.val("");
-                    
                 }
             });
-        
-        
         }
     }
 });
