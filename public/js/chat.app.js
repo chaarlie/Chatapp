@@ -23,12 +23,12 @@ chatApp.config(['$routeProvider', function($routeProvider){
       /*  if(!attrs)
             event.preventDefault();
         else*/
-            /*if ( attrs.originalPath !== '/home'){
+            if ( attrs.originalPath !== '/home'){
                 if(Session.id)
                     $location.path('/home');
                 else
                     $location.path('/login');
-            }*/
+            }
     });
     
 }).service('Session', function(){
@@ -156,14 +156,14 @@ chatApp.controller('chatController', function(
 
          //Se necesita un tiempo para inicializar isAuthenticated()
          $timeout(function(){
-            if(AuthService.isAuthenticated()){
+            //if(AuthService.isAuthenticated()){
                 
                 socket.emit('userLogin', {username: $scope.user.username, age: $scope.user.age});
                 
                 $cookies['username'] = $scope.user.username;
 
                 $location.path('/home');
-            }
+            //}
         }, 100);
     }
 
