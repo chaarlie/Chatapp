@@ -20,9 +20,9 @@ chatApp.config(['$routeProvider', function($routeProvider){
 
    $rootScope.$on('$routeChangeStart', function (event, attrs) {
 
-      /*  if(!attrs)
+        if(!attrs)
             event.preventDefault();
-        else*/
+        else
             if ( attrs.originalPath !== '/home'){
                 if(Session.id)
                     $location.path('/home');
@@ -57,6 +57,8 @@ chatApp.config(['$routeProvider', function($routeProvider){
             }).then(function(res){
                 Session.create(res.data.sessionId);
                 
+                console.log("here's the fucking session");
+                console.log(Session);
             }, function(error){
                 alert("error");
             });
@@ -66,8 +68,7 @@ chatApp.config(['$routeProvider', function($routeProvider){
         }
     };
 }]).factory('socket', ['$rootScope', '$location', function ($rootScope, $location) {
-    var address = $location.protocol() + "://" + $location.host() + ":" + $location.port();
-    var socket = io.connect(address);
+    var socket = io.connect();
 
     return {
         on: function (eventName, callback) {
@@ -156,15 +157,15 @@ chatApp.controller('chatController', function(
 
          //Se necesita un tiempo para inicializar isAuthenticated()
          $timeout(function(){
-            //if(AuthService.isAuthenticated()){
+            if(AuthService.isAuthenticated()){
                 
                 socket.emit('userLogin', {username: $scope.user.username, age: $scope.user.age});
                 
                 $cookies['username'] = $scope.user.username;
 
                 $location.path('/home');
-            //}
-        }, 100);
+            }
+        }, 1000);
     }
 
     $scope.createChatbox = function(username){
