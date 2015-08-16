@@ -165,7 +165,7 @@ chatApp.controller('chatController', function(
 
                 $location.path('/home');
             }
-        }, 1000);
+        }, 500);
     }
 
     $scope.createChatbox = function(username){
