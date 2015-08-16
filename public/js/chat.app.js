@@ -20,9 +20,9 @@ chatApp.config(['$routeProvider', function($routeProvider){
 
    $rootScope.$on('$routeChangeStart', function (event, attrs) {
 
-        if(!attrs)
+      /*  if(!attrs)
             event.preventDefault();
-        else
+        else*/
             if ( attrs.originalPath !== '/home'){
                 if(Session.id)
                     $location.path('/home');
