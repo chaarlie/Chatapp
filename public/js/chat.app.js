@@ -13,31 +13,61 @@ chatApp.config(['$routeProvider', function($routeProvider){
         controller:'chatController'
 
     })
-}]).run(function ($rootScope, $cookies) {
+}]).run(function ($rootScope, $cookies, $location, Session) {
     $rootScope.messages = [];
     $rootScope.chatboxes  = {};
     $rootScope.username  = $cookies['username'];
+
+   $rootScope.$on('$routeChangeStart', function (event, attrs) {
+
+        if(!attrs)
+            event.preventDefault();
+        else
+            if ( attrs.originalPath !== '/home'){
+                if(Session.id)
+                    $location.path('/home');
+                else
+                    $location.path('/login');
+            }
+    });
     
-}).factory(
-'handleLogin',
-function($http, $location ) {
-    return {
-        doLogin : function(scope ) {
-            return $http.post('/login', {username: scope.user.username, age: scope.user.age}).then(
-                function(res) {
-                    scope.auth = (res.data.username !== null);
-                    
-                    if(scope.auth)
-                        $location.path('/home');
-                },
-                function(error){
-                    alert("an error occured");
-                    console.log(error);
-                }
-                );
+}).service('Session', function(){
+    this.create = function (sessionId) {
+        this.id = sessionId;
+        
+    };
+    this.destroy = function () {
+        this.id = null;
+        
+    };
+}).factory('AuthService',['$http', 'Session' , function($http, Session){
+    
+    return{
+        doLogin: function (u) {
+            var user = {
+                username: u.username,
+                password: u.password
+            };
+
+            $http({
+                url: "login/",
+                method: "POST",
+                data: user,
+                headers: {'Content-Type': 'application/json'}
+            }).then(function(res){
+                Session.create(res.data.sessionId);
+                
+                console.log("here's the fucking session");
+                console.log(Session);
+            }, function(error){
+                alert("error");
+            });
+            
+        },isAuthenticated: function () {
+            return !!Session.id;
         }
     };
-}).factory('socket', ['$rootScope', function ($rootScope) {
+}]).factory('socket', ['$rootScope', function ($rootScope) {
     var socket = io.connect();
 
     return {
@@ -90,7 +120,11 @@ function($http, $location ) {
 
  
 
-chatApp.controller('chatController', function($scope, $rootScope, $location,$cookies, $http, $compile, $interval, $timeout, handleLogin, socket){
+chatApp.controller('chatController', function(
+    $scope, $rootScope, $location, 
+    $cookies, $http, 
+    $compile, $interval, $timeout, 
+    AuthService, socket, Session){
 
     socket.on('msgFromServer', function (data) {     
         var ob = {name: data.from};
@@ -109,7 +143,8 @@ chatApp.controller('chatController', function($scope, $rootScope, $location,$coo
      
     });
 
-    socket.on('allConnected', function (data) {     
+    socket.on('allConnected', function (data) {   
+        delete data[$cookies['username']];
         $scope.connected = data;
     });
 
@@ -118,11 +153,19 @@ chatApp.controller('chatController', function($scope, $rootScope, $location,$coo
     }, 1500);
 
     $scope.doSubmit = function(){
-        handleLogin.doLogin($scope);
-        
-        socket.emit('userLogin', {username: $scope.user.username, age: $scope.user.age});
+        AuthService.doLogin($scope.user);
 
-        $cookies['username'] = $scope.user.username;
+         //Se necesita un tiempo para inicializar isAuthenticated()
+         $timeout(function(){
+            if(AuthService.isAuthenticated()){
+                
+                socket.emit('userLogin', {username: $scope.user.username, age: $scope.user.age});
+                
+                $cookies['username'] = $scope.user.username;
+
+                $location.path('/home');
+            }
+        }, 100);
     }
 
     $scope.createChatbox = function(username){
@@ -140,10 +183,11 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
         replace:true,
         scope: true,
         controller: function($scope, $rootScope){
+
         },
         link: function(scope, element, attrs) {
-            $(element).draggable();
-            
+            element.draggable();
+
             var removeChatbox = element.find("span");
             removeChatbox.bind("mousedown", function(){
                 //
@@ -172,7 +216,7 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
                     element.data('to', data.from);
                      
                     container = scope.$root.messages[data.from];
-                    container.push({text: data.message, person: data.from });
+                    container.push({text: data.message, byMe: false });
                 }
  
             });
@@ -190,11 +234,11 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
 
                     container = scope.$root.messages[scope.msgFrom];
 
-                    container.push({text: textInput.val(), person: $cookies['username']});
+                    container.push({text: textInput.val(), byMe: true});
                     displayRef.append("\n" +  $cookies['username'] + ": " + $.trim(textInput.val()) ); 
 
                     socket.emit('msgToServer', {message: $.trim(textInput.val()), from: $cookies['username'], to: scope.msgFrom });
-
+                    
                     textInput.val("");
                 }
             });

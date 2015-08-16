@@ -28,6 +28,7 @@ app.use(session({
 app.use(express.static(__dirname + '/public')); 
 app.use(bodyParser.json()); 
 
+session.sids = [];
 var users = [];
 var connected = {};
 
@@ -35,15 +36,27 @@ io.sockets.on('connection', function (socket) {
     socket.on('userLogin', function(data) {
         if(users.indexOf(data["username"]) == -1 )
             users[data.username] = socket;
-        for (var u in users){
-            connected[u] = {username: u, age: data.age};
-        }
+        for (var u in users)
+            connected[u] = {username: u};
+
 
         io.emit('allConnected', connected);
+
+        var welcomeInstructions = [
+            '¡Bienvenido!',
+            '-.Esta es una aplicación de chat',
+            '-.Para chatear:',
+            '1)abra otro explorador \n 2)elija otro usuario'
+         ];
+
+        for(var index in welcomeInstructions){
+               socket.emit('msgFromServer', { from: 'Bot', to: data.username, message: welcomeInstructions[index]});
+        }
     });
     
-    socket.on('msgToServer', function(data){
-        users[data.to].emit('msgFromServer', { from: data['from'], to: data['to'], message: data['message']});
+    socket.on('msgToServer', function(data){    
+        if(data.from !== 'Bot' && users[data.to])
+            users[data.to].emit('msgFromServer', { from: data['from'], to: data['to'], message: data['message']});
     });
 
     socket.on('disconnect', function() {
@@ -51,6 +64,7 @@ io.sockets.on('connection', function (socket) {
          if(users[u].id == socket.id ){     
              delete connected[u];
              delete users[u];
+             //delete session.user;
              
              io.emit('allConnected', connected);
 
@@ -85,23 +99,13 @@ app.get('/logout',function(req,res){
 
 app.post('/login',function(req,res){
     // validar usuario en la base de datos antes de introducir a la sesion.
-    var dbTestedValidUser = true ;
-    session.user = null;    
+    var dbTestedValidUser = true ;    
 
     if(dbTestedValidUser){
-        if(!session.user){
-            session.user = {username: req.body.username, age: req.body.age};
+        if(req.body.username)
+        if(!session.sids[req.body.username]){
+            session.sids[req.body.username] =  req.sessionId; 
         }
-          
     }
-
-    res.json(session.user);
+    res.json({sessionId: req.sessionID});
 });
-
-app.get('/is_logged_in', function(req, res){
-    res.json(session.user);
-});
-app.get('/connected', function(req, res){
-    res.json(connected);
-});
- 

@@ -13,11 +13,11 @@
           <div id="message-window">
             <div ng-if="$root.messages[current] != 'undefined'">
                 <div class="row" ng-repeat="msgOb in $root.messages[current]">
-                  <div class="chat-bubble bubble-right"  ng-if="$root.username == msgOb.person">      
+                  <div class="chat-bubble bubble-right"  ng-if="msgOb.byMe">      
                     {{msgOb.text}}
                   </div>
 
-                  <div class="chat-bubble bubble-left"  ng-if="$root.username != msgOb.person">      
+                  <div class="chat-bubble bubble-left"  ng-if="!msgOb.byMe">      
                     {{msgOb.text}}
                   </div>
                 </div>
