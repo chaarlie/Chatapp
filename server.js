@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var fs      = require('fs');
 
-app.set('port',  process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 80);
+app.set('port',  process.env.OPENSHIFT_NODEJS_PORT  || 80);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
 
 

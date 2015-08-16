@@ -68,8 +68,6 @@ chatApp.config(['$routeProvider', function($routeProvider){
         }
     };
 }]).factory('socket', ['$rootScope', '$location', function ($rootScope, $location) {
-
-
     var address = $location.protocol() + "://" + $location.host() + ":" + $location.port();
     var socket = io.connect(address);
 
