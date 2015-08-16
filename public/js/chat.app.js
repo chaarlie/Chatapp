@@ -23,12 +23,12 @@ chatApp.config(['$routeProvider', function($routeProvider){
       /*  if(!attrs)
             event.preventDefault();
         else*/
-            if ( attrs.originalPath !== '/home'){
+            /*if ( attrs.originalPath !== '/home'){
                 if(Session.id)
                     $location.path('/home');
                 else
                     $location.path('/login');
-            }
+            }*/
     });
     
 }).service('Session', function(){
@@ -57,8 +57,6 @@ chatApp.config(['$routeProvider', function($routeProvider){
             }).then(function(res){
                 Session.create(res.data.sessionId);
                 
-                console.log("here's the fucking session");
-                console.log(Session);
             }, function(error){
                 alert("error");
             });
