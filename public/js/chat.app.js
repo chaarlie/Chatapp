@@ -56,9 +56,6 @@ chatApp.config(['$routeProvider', function($routeProvider){
                 headers: {'Content-Type': 'application/json'}
             }).then(function(res){
                 Session.create(res.data.sessionId);
-                
-                console.log("here's the fucking session");
-                console.log(Session);
             }, function(error){
                 alert("error");
             });
@@ -173,6 +170,7 @@ chatApp.controller('chatController', function(
          $scope.msgFrom = username;
          $rootScope.chatboxes[username] = {name: username};
     }
+    //$scope.createChatbox('test');
 
 });
 
@@ -221,23 +219,19 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
  
             });
 
-            element.bind("keydown", function(event){
+            element.find('textarea').bind("keydown", function(event){
                 if(event.which === 13){
-                    var textInput = $('#chatbox-' + scope.msgFrom + ' #message-input');
-                    
-                    displayRef = $($("#chatbox-" + scope.msgFrom +  " textarea")[0]);
-
+                    var textInput = $(event.target);
+                    var toSend = element.find("h3").text();
 
                     if(!scope.$root.messages[scope.msgFrom]) {
                         scope.$root.messages[scope.msgFrom] = [];
                     }
 
                     container = scope.$root.messages[scope.msgFrom];
-
                     container.push({text: textInput.val(), byMe: true});
-                    displayRef.append("\n" +  $cookies['username'] + ": " + $.trim(textInput.val()) ); 
-
-                    socket.emit('msgToServer', {message: $.trim(textInput.val()), from: $cookies['username'], to: scope.msgFrom });
+        
+                    socket.emit('msgToServer', {message: $.trim(textInput.val()), from: $cookies['username'], to: toSend });
                     
                     textInput.val("");
                 }
@@ -250,7 +244,7 @@ chatApp.directive("fileUpload", function(socket){
     return {
         template: '<input  type="file"  />',
         restrict: 'E',
-        scope: false, //default
+ 
         link: function(scope, element, attrs){ 
               element.bind('change', function(e) {
                     var file = e.target.files[0];

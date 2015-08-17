@@ -64,7 +64,6 @@ io.sockets.on('connection', function (socket) {
          if(users[u].id == socket.id ){     
              delete connected[u];
              delete users[u];
-             //delete session.user;
              
              io.emit('allConnected', connected);
 

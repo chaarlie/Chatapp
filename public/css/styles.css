@@ -1,13 +1,3 @@
-/*
-A custom Bootstrap 3.2 'Holo' style theme
-from http://bootply.com
-
-This CSS code should follow the 'bootstrap.css'
-in your HTML file.
-
-license: MIT
-author: bootply.com
-*/
 
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
  
@@ -237,7 +227,7 @@ h3,h4,h5,.panel {
      font-weight: bold;
   }
 
-  .online-contact{
+.online-contact{
     display:inline-block;
     zoom:1;
     line-height:normal;
@@ -336,10 +326,9 @@ ul.company-info-row li{
   height: 300px;
   border-radius: 30px 30px 30px 30px;
   margin:  auto;  
-  overflow: hidden;
-    
-     border-width: 3px;
-    border-style: solid;
+  overflow: hidden;  
+  border-width: 3px;
+  border-style: solid;
    /* -webkit-border-image: 
       -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;*/
     -webkit-border-image: 
@@ -408,6 +397,10 @@ ul.company-info-row li{
   color: #D5EAED;
 }
 
+.chatbox{
+  margin-top: -20%;
+}
+
 .chatbox .panel-primary{
   border: none;
 }
@@ -445,8 +438,7 @@ border-radius: 10px;
 border: #F5F5F5 solid 2px;
 }
 
-.bubble-right:after 
-{
+.bubble-right:after {
 content: '';
 position: absolute;
 border-style: solid;
@@ -454,7 +446,6 @@ border-width: 8px 0 8px 9px;
 border-color: transparent #DFEFF2;
 display: block;
 width: 0;
-z-index: 1;
 right: -9px;
 top: 12px;
 }
@@ -485,7 +476,6 @@ border-width: 8px 9px 8px 0;
 border-color: transparent #EDEDED;
 display: block;
 width: 0;
-z-index: 1;
 left: -9px;
 top: 12px;
 }
