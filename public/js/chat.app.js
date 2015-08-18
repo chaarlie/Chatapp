@@ -186,23 +186,20 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
         link: function(scope, element, attrs) {
             element.draggable();
 
-            var removeChatbox = element.find("span");
-            removeChatbox.bind("mousedown", function(){
-                //
+            element.find("span").bind("mousedown", function(){
+                
                 var nick = element.find('h3').text();
-               if('chatbox-' + nick == element.attr("id") ){
+                if('chatbox-' + nick == element.attr("id") ){
                     delete scope.$root.chatboxes[nick];
                     delete scope.$root.messages[nick]
                 
-                    $('#chatbox-' + nick).remove();     
+                    element.remove();     
                }
 
             }); 
             
-               var displayRef =  null;
             var container = null;
-            var d = new Date();
-             
+ 
             element.attr("id", "chatbox-" + scope.msgFrom);
             element.find("h3").text(scope.msgFrom);
             scope.current = scope.msgFrom;
@@ -210,8 +207,6 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
             scope.$on('message', function(event, data){
           
                 if(element.attr("id") == "chatbox-" + data.from){
-                    
-                    element.data('to', data.from);
                      
                     container = scope.$root.messages[data.from];
                     container.push({text: data.message, byMe: false });
@@ -223,12 +218,14 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
                 if(event.which === 13){
                     var textInput = $(event.target);
                     var toSend = element.find("h3").text();
+                    scope.current = toSend;
+                   
 
-                    if(!scope.$root.messages[scope.msgFrom]) {
-                        scope.$root.messages[scope.msgFrom] = [];
+                    if(!scope.$root.messages[toSend]) {
+                        scope.$root.messages[toSend] = [];
                     }
 
-                    container = scope.$root.messages[scope.msgFrom];
+                    container = scope.$root.messages[toSend];
                     container.push({text: textInput.val(), byMe: true});
         
                     socket.emit('msgToServer', {message: $.trim(textInput.val()), from: $cookies['username'], to: toSend });
@@ -247,10 +244,8 @@ chatApp.directive("fileUpload", function(socket){
  
         link: function(scope, element, attrs){ 
               element.bind('change', function(e) {
-                    var file = e.target.files[0];
-
+                var file = e.target.files[0];
                 socket.socketStreamEmit('file', {file: file, name: file.name, size: file.size} );
-                
               });
         }
     }
