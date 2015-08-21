@@ -7,6 +7,7 @@
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ui-bootstrap-0.13.1-csp.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -25,15 +26,18 @@
     <script src="js/angular.min.js"></script>
       <script src="js/angular-route.js"></script>
     <script src="js/angular-cookies.min.js"></script>
-    <script src="js/ngDraggable.js"></script>
+    <script src="js/ui-bootstrap-0.13.1.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.13.1.min.js"></script>
 
     <script src="js/chat.app.js"></script>
 
     <style type="text/css">
-      #configuration .panel-heading, .list-group, button{
+/*      #configuration .panel-heading, .list-group, button{
         margin-left: -10%;
-      }
+      }*/
     </style>
+
+</script>
 
   </head>
   <body>
@@ -65,17 +69,13 @@
     <div ng-repeat="chatbox in chatboxes">
     <div ng-include src="'js/templates/chatbox.html'" ></div>  
   </div>
-
-
-
+ 
   <!-- _________________________ Start Bottom _________________________ -->
-    
-
-      <div    class="row">
-  <footer   class="navbar navbar-inverse navbar-fixed-bottom" >
-    <div class="row">
-      <div id="footer-top" class="col-md-12" ></div>    
-    </div>
+  <div    class="row">
+    <footer   class="navbar navbar-inverse navbar-fixed-bottom" >
+      <div class="row">
+        <div id="footer-top" class="col-md-12" ></div>    
+      </div>
 
     <div class="row">
       <div id="footer-bottom" class="col-md-12"  >

@@ -1,31 +1,29 @@
 <div id="main-info">
-      
       <!-- <file-upload></file-upload> -->
+      <div class="row">
+        <profile-info></profile-info>
+      </div>
+
       <div    class="row">
         <div class="col-md-2 col-sm-3 col-xs-4">
-          
-
           <div  id="contacts" class="panel panel-default">  
               <div class="panel-heading"><h3>Online </h3></div>
             <div class="panel-body">
             <div    class="row" ng-repeat="c in connected">
-              <div class="col-md-4 col-md-offset-1  ">
+              <div class="col-md-4 col-md-offset-1">
                 <span href="" class="online-contact selected" ng-click="createChatbox(c.username)">
                   {{c.username}}    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </span>
-               <!--  <hr class="style-two "> -->
               </div>
            </div>
            </div>
           </div>
         </div>
-
-
-
+        
         <div class="col-md-1 col-xs-4  pull-right" id="configuration">
            <div    class="row ">
             <div class="row">
-               <div class=" col-md-offset-5 col-xs-offset-5">
+               <div class=" col-md-offset-4 col-xs-offset-4">
                     <button type="button" class="btn btn-default btn-primary" id="conf-icon"><span class="glyphicon glyphicon-cog" ></button></span> 
                </div>
              </div>

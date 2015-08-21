@@ -15,8 +15,8 @@ hr {
 }
 
 
-body {
-  padding-top: 51px; 
+body { 
+  padding-top: 2%; 
   background: #1E1E1E;
   color: #f9f9f9;
 }
@@ -24,67 +24,17 @@ a {
   color:#bcbcbc;
 }
  
-/* collapsed sidebar styles */
-@media screen and (max-width: 767px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -41.6%;
-  }
+ 
+@media (max-width:600px) and (min-width:500px) {
+  body {
+    padding-top: 4%; 
+  }  
+}
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -41.6%;
-  }
-  .row-offcanvas-right.active {
-    right: 41.6%;
-  }
-  .row-offcanvas-left.active {
-    left: 41.6%;
-  }
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 41.6%;
-  }
-  #sidebar {
-    background-color:#3b3b3b;
-    padding-top:0;
-  }
-  #sidebar .nav>li {
-    color: #ddd;
-    background: linear-gradient(#3E3E3E, #383838);
-    border-top: 1px solid #484848;
-    border-bottom: 1px solid #2E2E2E;
-    padding-left:10px;
-  }
-  #sidebar .nav>li:first-child {
-    border-top:0;
-  }
-  #sidebar .nav>li>a {
-    color: #ddd;
-  }
-  #sidebar .nav>li>a>img {
-    max-width: 14px;
-  }
-  #sidebar .nav>li>a:hover, #sidebar .nav>li>a:focus {
-    text-decoration: none;
-    background: linear-gradient(#373737, #323232);
-    color: #fff;  
-  }
-  #sidebar .nav .caret {
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-  }
-  #sidebar .nav a:hover .caret{
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-  }
+@media (min-width:950px) {
+  body {
+    padding-top: 1%; 
+  }  
 }
 
 /* theme */
@@ -98,19 +48,7 @@ a {
    background-color:#0099CC;
    border-color:transparent;
 }
-.btn-info,.label-info,.progress-bar-info {
-  background-color:#33b5e5;
-}
-.btn-success,.label-success,.progress-bar-success {
-  background-color:#669900;
-}
-.btn-danger,.label-danger,.progress-bar-danger {
-  background-color:#FF4444;
-}
-.btn-warning,.label-warning,.progress-bar-warning {
-  background-color:#FFBB33;
-  color:#444444;
-}
+
 .nav-tabs>li>a {
   border-radius:0;
 }
@@ -126,8 +64,8 @@ h3,h4,h5,.panel {
 /*Custom */
 
 #logo-text-md{
-      font-size: 500%;
-      color:white;
+    font-size: 500%;
+    color:white;
 
 }
 
@@ -162,16 +100,15 @@ h3,h4,h5,.panel {
       
     }
 
-    #footer-top{
+#footer-top{
 
-      background: 
+  background: 
         linear-gradient(
           #A7D1D9,
-          /*#74C7D6, */
           #2CBFD9
-        );
+  );
       
-      -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
   -moz-border-radius-topleft: 10px;
   -moz-border-radius-topright: 10px;
@@ -203,7 +140,6 @@ h3,h4,h5,.panel {
   }
   #contacts{
     height: 180px;
-    /*overflow-y:hidden; */
     border-radius: 30px 0px 0px  30px;
   }
   #contacts .panel-body{ 
@@ -329,16 +265,14 @@ ul.company-info-row li{
   overflow: hidden;  
   border-width: 3px;
   border-style: solid;
-   /* -webkit-border-image: 
-      -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;*/
-    -webkit-border-image: 
-      -webkit-linear-gradient(white, #EDF2F2, #E1F0F0, white) 1 100%;
-   /* -moz-border-image:
-      -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
-    -o-border-image:
-      -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
-    border-image:
-      linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;*/
+  -webkit-border-image: 
+    -webkit-linear-gradient(white, #EDF2F2, #E1F0F0, white) 1 100%;
+  -moz-border-image:
+    -moz-linear-gradient(white, #EDF2F2, #E1F0F0, white) 1 100%;
+  -o-border-image:
+    -o-linear-gradient(white, #EDF2F2, #E1F0F0, white) 1 100%;
+  border-image:
+  linear-gradient(white, #EDF2F2, #E1F0F0, white) 1 100%;
 }
 
 #login-header{
@@ -398,7 +332,15 @@ ul.company-info-row li{
 }
 
 .chatbox{
-  margin-top: -20%;
+  margin-top: -15%;
+}
+
+@media (max-width:766px) and (min-width:300px) {
+   .chatbox{
+    position: absolute;
+    top: 62%;
+    left: 35%;
+    }
 }
 
 .chatbox .panel-primary{
@@ -480,4 +422,79 @@ left: -9px;
 top: 12px;
 }
 
+
+
+.wrap {
+
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: -5px auto 0px 75px;
+}
+
+@media (max-width:1200px) and (min-width:1000px) {
+   .wrap {
+    margin: -5px auto 0px 45px;
+  } 
+}
+
+.clicker {
+  /*background-image: url('images/yo_odesk.JPG');*/
+  outline: none;
+  font-weight: 600;
+  position: absolute;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  height: 64px;
+  width: 64px;
+  left: 8px;
+  top: 8px;
+  border-radius: 100px;
+  z-index: 2;
+}
+
+ .clicker:active {
+  transform: translate(0, 1px);
+  height: 63px;
+  box-shadow: 0px 1px 0 0 rgb(190, 190, 190) inset;
+}
+
+.circle {
+  position: relative;
+  border-radius: 40px;
+  width: 80px;
+  height: 80px;
+  z-index: 1;
+}
+
  
+.clicker:hover + .circle,
+.clicker:active + .circle {
+  animation: rotator linear .6s infinite;
+}
+
+@keyframes rotator {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.angled.second {
+ 
+   background-image: linear-gradient( white 0%, white 30%, #C4EAF2 30%, #C4EAF2 70%, white 70%, white 100%);  
+ 
+}
+
+#greeting-msg{
+  margin-left: 10px;
+}
+#greeting-msg > div{
+  border-radius: 20px 20px 20px 20px; 
+}
+#profile-info{
+  margin-top: 1%
+}

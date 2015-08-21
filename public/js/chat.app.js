@@ -1,4 +1,4 @@
-var chatApp = angular.module("chatApp", ["ngCookies", "ngRoute"]);
+var chatApp = angular.module("chatApp", ["ngCookies", "ngRoute", "ui.bootstrap"]);
 chatApp.config(['$routeProvider', function($routeProvider){
     $routeProvider
     .when('/home', {
@@ -99,32 +99,36 @@ chatApp.config(['$routeProvider', function($routeProvider){
 
             ss(socket).emit(eventName, stream, {name:data.name, size: data.size});
               
-              var blobStream = ss.createBlobReadStream(data.file);
-              var size = 0;
+            var blobStream = ss.createBlobReadStream(data.file);
+            var size = 0;
 
-              blobStream.on('data', function(chunk) {
-               size += chunk.length;
-               console.log(Math.floor(size / data.size * 100) + '%');
+            blobStream.on('data', function(chunk) {
+            size += chunk.length;
+            console.log(Math.floor(size / data.size * 100) + '%');
               // -> e.g. '42%' 
-              });
+            });
 
-              blobStream.pipe(stream);
-                stream = null;
+            blobStream.pipe(stream);
+            stream = null;
 
         }
     };
 }]);
 
- 
-
 chatApp.controller('chatController', function(
     $scope, $rootScope, $location, 
-    $cookies, $http, 
+    $cookies, $http,  $modal,  
     $compile, $interval, $timeout, 
     AuthService, socket, Session){
+    $scope.user = {
+        username:'',
+        password:'',
+        pic:''
+    };
 
     socket.on('msgFromServer', function (data) {     
         var ob = {name: data.from};
+
 
         if(!$rootScope.chatboxes[data.from]) {
             $rootScope.messages[data.from] = [];
@@ -163,20 +167,28 @@ chatApp.controller('chatController', function(
                 $location.path('/home');
             }
         }, 500);
-    }
+    };
 
     $scope.createChatbox = function(username){
-         
          $scope.msgFrom = username;
          $rootScope.chatboxes[username] = {name: username};
-    }
-    //$scope.createChatbox('test');
+    };
 
+    $scope.user.pic = 'blank-user.JPG';
+
+    $scope.open = function () {
+
+        var modalInstance = $modal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'js/templates/test.html',
+          controller: 'chatController',
+          size: 'md'
+        });
+    };
 });
 
 chatApp.directive('chatboxLabel', function($cookies, socket) {
     return {
-
         restrict: 'A',
         replace:true,
         scope: true,
@@ -186,8 +198,7 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
         link: function(scope, element, attrs) {
             element.draggable();
 
-            element.find("span").bind("mousedown", function(){
-                
+            element.find("span").bind("mousedown", function(){ 
                 var nick = element.find('h3').text();
                 if('chatbox-' + nick == element.attr("id") ){
                     delete scope.$root.chatboxes[nick];
@@ -205,9 +216,7 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
             scope.current = scope.msgFrom;
 
             scope.$on('message', function(event, data){
-          
                 if(element.attr("id") == "chatbox-" + data.from){
-                     
                     container = scope.$root.messages[data.from];
                     container.push({text: data.message, byMe: false });
                 }
@@ -220,7 +229,6 @@ chatApp.directive('chatboxLabel', function($cookies, socket) {
                     var toSend = element.find("h3").text();
                     scope.current = toSend;
                    
-
                     if(!scope.$root.messages[toSend]) {
                         scope.$root.messages[toSend] = [];
                     }
@@ -241,12 +249,42 @@ chatApp.directive("fileUpload", function(socket){
     return {
         template: '<input  type="file"  />',
         restrict: 'E',
- 
         link: function(scope, element, attrs){ 
-              element.bind('change', function(e) {
+            element.bind('change', function(e) {
                 var file = e.target.files[0];
                 socket.socketStreamEmit('file', {file: file, name: file.name, size: file.size} );
-              });
+            });
+        }
+    }
+});
+
+chatApp.directive("profileInfo", function($cookies){
+    return{
+        templateUrl:'js/templates/profile-info.html',
+        restrict: 'E',
+        link:function(scope, element, attrs){
+
+            $(element).find("#profile-pic").hover(function(){
+                $("#spinner").addClass("circle angled second");
+                 $("#change-pic").css('visibility','visible');
+            }, function(){
+                $("#spinner").removeClass("circle angled second");
+                $("#change-pic").css('visibility','hidden');
+            });;
+        }
+    }
+});
+
+chatApp.directive("changePic", function(){
+    return{
+        template:'<button id="change-pic" style="visibility:hidden" class="btn btn-default">Cambiar</button>',
+        restrict: 'E',
+      
+        link:function(scope, element, attrs, controller){
+            //user.pic is not available in template
+            element.click(function(){
+                scope.open();
+            });
         }
     }
 });

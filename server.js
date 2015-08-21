@@ -45,6 +45,7 @@ io.sockets.on('connection', function (socket) {
         var welcomeInstructions = [
             '¡Bienvenido!',
             '-.Esta es una aplicación de chat',
+            '-.Mover el puntero sobre la foto para cambiarla',
             '-.Para chatear:',
             '1)abra otro explorador \n 2)elija otro usuario'
          ];
