@@ -174,7 +174,7 @@ chatApp.controller('chatController', function(
          $rootScope.chatboxes[username] = {name: username};
     };
 
-    $scope.user.pic = 'blank-user.JPG';
+    $scope.user.pic = 'blank-user.jpg';
 
     $scope.open = function () {
 
