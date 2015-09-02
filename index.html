@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="chatApp">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Holo Theme</title>
-    <meta name="generator" content="Bootply" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/ui-bootstrap-0.13.1-csp.css" rel="stylesheet">
-
-
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Holo Theme</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/ui-bootstrap-0.13.1-csp.css" rel="stylesheet">
+  <link href="css/angular-chart.css" rel="stylesheet">
+  
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -18,101 +18,100 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
- 
+
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/socket.io-1.3.4.js"></script>
     <script src="js/socket.io-stream.js"></script>
     
     <script src="js/angular.min.js"></script>
-      <script src="js/angular-route.js"></script>
+    <script src="js/angular-route.js"></script>
     <script src="js/angular-cookies.min.js"></script>
     <script src="js/ui-bootstrap-0.13.1.min.js"></script>
     <script src="js/ui-bootstrap-tpls-0.13.1.min.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/angular-chart.js"></script>
+  
+
 
     <script src="js/chat.app.js"></script>
 
     <style type="text/css">
-/*      #configuration .panel-heading, .list-group, button{
-        margin-left: -10%;
-      }*/
     </style>
+    <script type="text/javascript">
+    </script>
+  </script>
 
-</script>
+</head>
+<body>
+  <div class="container"  >
 
-  </head>
-  <body>
-    <div class="container" ng-controller="chatController">
- 
-     <!-- top navbar -->
-     <header  id="header-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-       <div class="navbar-header">
-        <div class="row">
-            <div class="col-md-12 visible-md visible-lg">
-                   <a class="navbar-brand" href="#" id="logo-text-md">Social Network</a>
-            </div>
-
-            <div class="col-md-12 visible-sm">
-                   <a class="navbar-brand" href="#" id="logo-text-sm">Social Network</a>
-            </div>
-
-
-            <div class="col-md-12 visible-xs ">
-                   <a class="navbar-brand" href="#" id="logo-text-xs">Social Network</a>
-            </div>
-        </div>
-       </div>
-     </header>
-    
-  <div id="content" ng-view >
-  </div>
-
-    <div ng-repeat="chatbox in chatboxes">
-    <div ng-include src="'js/templates/chatbox.html'" ></div>  
-  </div>
- 
-  <!-- _________________________ Start Bottom _________________________ -->
-  <div    class="row">
-    <footer   class="navbar navbar-inverse navbar-fixed-bottom" >
+   <!-- top navbar -->
+   <header  id="header-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+     <div class="navbar-header">
       <div class="row">
-        <div id="footer-top" class="col-md-12" ></div>    
-      </div>
+        <div class="col-md-12 visible-md visible-lg">
+         <a class="navbar-brand" href="#" id="logo-text-md">Social Network</a>
+       </div>
 
-    <div class="row">
-      <div id="footer-bottom" class="col-md-12"  >
-        
-        <div class="bread-crumb">
+       <div class="col-md-12 visible-sm">
+         <a class="navbar-brand" href="#" id="logo-text-sm">Social Network</a>
+       </div>
+
+
+       <div class="col-md-12 visible-xs ">
+         <a class="navbar-brand" href="#" id="logo-text-xs">Social Network</a>
+       </div>
+     </div>
+   </div>
+ </header>
+
+
+ <div id="content" ng-view >
+ </div>
+
+</div>
+
+<!-- _________________________ Start Bottom _________________________ -->
+
+
+
+<footer   class="navbar navbar-inverse navbar-fixed-bottom" >
+  <div class="row">
+    <div id="footer-top" class="col-md-12" ></div>    
+  </div>
+
+  <div class="row">
+    <div id="footer-bottom" class="col-md-12"  >
+
+      <div class="bread-crumb">
         <div id="company-info" class="navbar navbar-fixed-bottom">
-        <ul >
-          <li> 
-            <div class="company-info-container"><span class="glyphicon glyphicon-map-marker company-icon" aria-hidden="true"></span></div>
-               <div ><p class="company-info-text"> 
+          <ul >
+            <li> 
+              <div class="company-info-container"><span class="glyphicon glyphicon-map-marker company-icon" aria-hidden="true"></span></div>
+              <div ><p class="company-info-text"> 
                 21 Revolution Street,
                 Somewhere Only We Know</p></div>
-           
-          </li>
 
-          <li> 
-            <div class="company-info-container"><span class="glyphicon glyphicon-earphone company-icon" aria-hidden="true"></span></div>
-               <div ><p class="company-info-text">+1 809-220-1111</p></div>
-          </li>
-          <li>
- 
+              </li>
+
+              <li> 
+                <div class="company-info-container"><span class="glyphicon glyphicon-earphone company-icon" aria-hidden="true"></span></div>
+                <div ><p class="company-info-text">+1 809-220-1111</p></div>
+              </li>
+              <li>
+
                <div class="company-info-container"><span class="glyphicon glyphicon-envelope company-icon" aria-hidden="true"></span></div>
                <div ><p class="company-info-text">support@company.com</p></div>
-            </ul>
-          </li>
-        </ul>
-        </div>
-      </div>
+             </ul>
+           </li>
+         </ul>
+       </div>
+     </div>
 
-        
-      </div>
-    </div>
+   </div>
+ </div>
 
-  </footer>
-  <div>
+</footer>
 
-  </div>
-
-   </body>
+</body>
 </html>
