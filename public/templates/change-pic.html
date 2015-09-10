@@ -4,7 +4,7 @@
     <h3 class="modal-title">Cambiar Foto</h3>
 </div>
 <div class="modal-body">
-    <img height="300" width="190" src="{{user.pic}}" >
+    <img height="300" width="190" ng-src="files/{{user.pic}}"  ng-show="user.pic">
     
     <file-upload></file-upload>
     <div class="progress">

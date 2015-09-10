@@ -3,7 +3,7 @@
   <div class="col-md-2 col-sm-3 "> 
     <div id="profile-pic"class="wrap" >
      
-     <img class="clicker" src="{{user.pic}}"  >
+     <img class="clicker" ng-src="files/{{user.pic}}" ng-show="user.pic" >
      
      <div id="spinner" >
      </div>
@@ -14,7 +14,7 @@
  </div>
  <div id="greeting-msg" class="col-md-4   col-sm-5 col-xs-7"> 
   <div class="alert alert-info" role="alert">
-    <h4>Bienvenido {{user.name}}</h4>
+    <h4>Bienvenido {{user.pic}}</h4>
     <a href="#" class="alert-link"></a>
   </div>
 </div>

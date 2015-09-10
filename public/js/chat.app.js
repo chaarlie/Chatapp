@@ -290,11 +290,11 @@ chatApp.controller('homeController', function(
          $rootScope.chatboxes[username] = {name: username};
     };
 
-    $scope.user.pic = '../../files/blank-user.jpg';
+    $scope.user.pic = 'blank-user.jpg';
     $scope.$on('picUpload', function(event, name){
     
         $rootScope.$apply(function(){
-            $scope.user.pic = '../../files/' + name;
+            $scope.user.pic =  name;
         });     
     });
 

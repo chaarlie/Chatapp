@@ -1,3 +1,8 @@
+/*
+chat bubbles
+http://ilikepixels.co.uk/bubbler-css-speech-bubble-generator/
+*/
+
 
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
  
@@ -38,6 +43,20 @@ a {
     padding-top: 1%; 
   }  
 }
+
+
+/* bootstrap vertical padding */
+
+.voffset  { margin-top: 2px; }
+.voffset-1 { margin-top: 5px; }
+.voffset-2 { margin-top: 10px; }
+.voffset-3 { margin-top: 15px; }
+.voffset-4 { margin-top: 30px; }
+.voffset-5 { margin-top: 40px; }
+.voffset-6 { margin-top: 60px; }
+.voffset-7 { margin-top: 80px; }
+.voffset-8 { margin-top: 100px; }
+.voffset-9 { margin-top: 150px; }
 
 
 /* theme */
@@ -639,6 +658,63 @@ input[type=text]{
   background-color:#fdfdfd; 
 }
 
-symptom-selected div{
+/*symptom-selected div{
   display:inline;
+}*/
+
+
+.post-input{
+  position: relative;
+  height: 110px;
+  padding: 0px;
+  background: #FFFFFF;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  border-radius: 28px;
+  border: #3AA4C7 solid 4px;  
+}
+
+.post {
+  position: relative;
+  height: 110px;
+  padding: 0px;
+  background: #FFFFFF;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  border-radius: 28px;
+  border: #3AA4C7 solid 4px;
+}
+
+.post:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 18px 22px 18px 0;
+  border-color: transparent #FFFFFF;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: -22px;
+  top: 30px;
+}
+
+.post:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 21px 25px 21px 0;
+  border-color: transparent #3AA4C7;
+  display: block;
+  width: 0;
+  z-index: 0;
+  left: -29px;
+  top: 27px;
+}
+#posts-container{
+  color:black;
+  padding:0px;
+  height: 240px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border:1px solid black
 }
