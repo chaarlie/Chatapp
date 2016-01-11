@@ -1,5 +1,5 @@
 angular.module('chatApp.common')
-	.factory('socket', ['$rootScope', '$location', function ($rootScope, $location) {
+	.factory('Socket', ['$rootScope', '$location', function ($rootScope, $location) {
 		var socket = io.connect();
 
 		return {
@@ -28,6 +28,9 @@ angular.module('chatApp.common')
 					});
 				});
 			},
+
+			//this function is charge of uploading profile pics, could upload general files too
+			//I'm using npm socket=stream module.
 
 			socketStreamEmit: function (eventName, data) {
 				var stream = ss.createStream();

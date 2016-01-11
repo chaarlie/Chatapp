@@ -1,27 +1,24 @@
 angular.module('chatApp')
-    .controller('loginController', function( $timeout, $cookies, $location, $scope, $rootScope ){
+    .controller('loginController', function( $timeout, $state, $scope, $rootScope, Auth, Socket, Session ){
         var login = this;
+        login.user = {
+            username: '',
+            password: ''
+        };
 
-        console.log("sffg");
-        function doSubmit(){
+        login.doSubmit = function(){
+            Auth.doLogin(login.user);
 
-            //AuthService.doLogin($scope.user);
-
-            //Se necesita un tiempo para inicializar isAuthenticated()
+            //A few millis are needed to initialize isAuthenticated()
             $timeout(function(){
-                if(AuthService.isAuthenticated()){
-                    socket.emit('userLogin', {username: $scope.user.username, age: $scope.user.age});
+                if(Auth.isAuthenticated()){
+                    Socket.emit('userLogin', {username: login.user.username, age: ''});
                 
-                    Session.createUser($scope.user.username);
+                    Session.createUser(login.user.username);
 
-                    $location.path('/home');
+                    $state.go('home');
                 }
             }, 500);
         }
     }
 );
-
-/*angular.module('chatApp')
-    .controller('state1Controller', function($scope) {
-        $scope.items = ["A", "List", "Of", "Items"];
-    });*/

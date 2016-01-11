@@ -1,20 +1,19 @@
 angular.module('chatApp').controller('homeController', function(
         $scope, $rootScope,
         $http, $timeout, $modal,  
-        $compile, $interval, 
-        $cookies, socket, Session){
+        $compile, $interval,
+        Session, Socket){
+        
         $scope.user = {
             name: Session.username,
             pic:''
         };
-        alert();
 
-        socket.on('msgFromServer', function (data) {     
+        Socket.on('msgFromServer', function (data) {     
             var ob = {name: data.from};
 
             if(!$rootScope.chatboxes[data.from]) {
                 $rootScope.messages[data.from] = !$rootScope.messages[data.from]? [] : $rootScope.messages[data.from];
-                //$rootScope.chatboxes[data.from] = ob;
                 $rootScope.chatboxes[data.from] = ob;
             }
 
@@ -26,14 +25,13 @@ angular.module('chatApp').controller('homeController', function(
         });
 
         $timeout(function(){
-            socket.emit('displayReadyClient');
+            Socket.emit('displayReadyClient');
         }, 1000);
 
-        socket.on('allConnected', function (data) {   
+        Socket.on('allConnected', function (data) {   
             delete data[Session.username];
 
-            //para inicializacion. si la ventana ya esta abierta y 
-            //se envia el mensaje, da un error. 
+            //for initialization: if the window is open and the message is sent, an error is thrown.
             for (var d in data)
                 $rootScope.messages[d] = !$rootScope.messages[d]? [] : $rootScope.messages[d] ;
 
@@ -60,11 +58,15 @@ angular.module('chatApp').controller('homeController', function(
 
         $scope.openModal = function () {
 
-            var modalInstance = $modal.open({
-              animation: $scope.animationsEnabled,
-              templateUrl: '../../templates/change-pic.html',
-              controller: 'homeController',
-              size: 'md'
+             $scope.modalInstance  = $modal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: '/app/home/directives/change-pic.html',
+                controller: 'homeController',
+                size: 'md'
             });
         };
+
+         $scope.closeModal = function () {
+            $modal.close();
+        }
 });

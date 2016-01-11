@@ -5,7 +5,7 @@
     	</div>
 
 	    <div class="col-md-2 col-sm-2">
-    	   <div   ng-include="'./includes/contacts.html'"></div>
+    	   <div   ng-include="'/app/includes/contacts.html'"></div>
         </div>
 	                                                                 
 	   	<div class="col-md-5 col-sm-6  col-md-offset-1 col-sm-offset-1">
@@ -15,7 +15,7 @@
 		<div class="col-md-2  col-lg-2 col-lg-offset-1 col-md-offset-1  col-sm-2" id="configuration">
 			<div class="row">
 		 
-					<div  ng-include="'./includes/routes.html'"></div>
+					<div  ng-include="'/app/includes/routes.html'"></div>
 			</div>
  		</div>
 </div>
@@ -28,18 +28,19 @@
 				<legend>Agregar Intereses</legend>
 
 			<div class="row">
-				<symptom-searchbox > </symptom-searchbox>  
+				<interest-searchbox > </interest-searchbox>  
 			</div>
 			<div class="row">
+				 
 				<div id="symptom-results" class="col-md-7 col-sm-4 col-xs-6 col-sm-offset-4" ng-show="showResults">
-					<ul ng-repeat="symptom in symptoms">
-						<symptom-element id="{{symptom.name}}"></symptom-element>
+					<ul ng-repeat="interest in interests">
+						<interest-element id="{{interest.name}}"></interest-element>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
 				<div id="symptom-selected" class="col-md-7 col-sm-4 col-xs-6 col-xs-offset-3 col-sm-offset-4" >
-					<symptom-selected id="{{symptom.name}}" ng-repeat="symptom in symptomsSelected track by symptom.name"></symptom-selected>
+					<interest-selected id="{{interest.name}}" ng-repeat="interest in interestsSelected track by interest.name"></interest-selected>
 				</div>
 			</div>
 			 </fieldset>

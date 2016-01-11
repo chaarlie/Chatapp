@@ -1,22 +1,21 @@
 <div id="login-container">
 
-
     <div id="login-header"></div>
-        <form  ng-submit="doSubmit()" method="post" class="form-horizontal">
+        <form  ng-submit="login.doSubmit()" method="post" class="form-horizontal">
             
             <div id="login-input">
                 <div class="form-group">
                     <!-- <label for="inputEmail" class="control-label col-xs-2">Email</label> -->
                     <span class="glyphicon glyphicon-record control-label col-xs-2 login-icon" ></span>
                     <div class="col-md-6 col-xs-6 ">
-                        <input type="text"  ng-model="user.username"   class="form-control input-sm chat-input"  placeholder="username" />
+                        <input type="text"  ng-model="login.user.username"   class="form-control input-sm chat-input"  placeholder="username" />
                     </div>  
                 </div>
 
                 <div class="form-group">
                     <span class="glyphicon glyphicon-record control-label col-xs-2 login-icon" ></span>
                     <div class="col-md-6 col-xs-6">
-                        <input type="password"  ng-model="user.password"   class="form-control input-sm chat-input"  placeholder="anything.." />
+                        <input type="password"  ng-model="login.user.password"   class="form-control input-sm chat-input"  placeholder="anything.." />
                     </div>  
                 </div>
             </div>

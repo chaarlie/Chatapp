@@ -1,5 +1,5 @@
 angular.module('chatApp.common')
-	.factory('AuthService',['$http', 'Session' , function($http, Session){
+	.factory('Auth',['$http', 'Session' , function($http, Session){
 		return{
 			doLogin: function (u) {
 				var user = {
@@ -15,7 +15,7 @@ angular.module('chatApp.common')
 				}).then(function(res){
 					Session.create(res.data.sessionId);
 				}, function(error){
-					alert("error");
+					alert("error creating session");
 				});
 
 			},isAuthenticated: function () {
