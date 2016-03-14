@@ -1,7 +1,7 @@
 var chatApp =  angular.module('chatApp', ['ngCookies', 'chart.js', 'ui.router', 'chatApp.common', 'ui.bootstrap']);
           
 chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider){
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/home');
     
     $stateProvider
         .state('login', {
@@ -12,7 +12,10 @@ chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
         .state('home', {
             url:'/home',
             templateUrl:'app/home/home.html',
-            controller:'homeController as home'
+        })
+        .state('members', {
+            url:'/members',
+            templateUrl:'app/members/members.html',
         })
         .state('interests', {
             url:'/interests',
@@ -38,7 +41,7 @@ chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
  
    $rootScope.$on('$stateChangeStart', function (event, toState) {
       //Sample authentication 
-
+/*
       if(toState.url === "/home"){        
          if(!Auth.isAuthenticated()){
              event.preventDefault();
@@ -48,6 +51,6 @@ chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       if(toState.url === "/login"){
          if(Auth.isAuthenticated())
            event.preventDefault();
-      }
+      }*/
   });  
 });

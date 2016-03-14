@@ -14,7 +14,7 @@ var server = http.createServer(app).listen(app.get('port'), app.get('ip'), funct
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var io = require('socket.io').listen(server);   
+var io = require('socket.io').listen(server);
 var ss = require('socket.io-stream');
 var path = require('path');
 
@@ -25,8 +25,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use(express.static(__dirname + '/public')); 
-app.use(bodyParser.json()); 
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 
 session.sids = [];
 var users = [];
@@ -34,16 +34,16 @@ var connected = {};
 //var interests = ['chat','fotos', 'chicas', 'chicos', 'musica', 'salir', 'bailar'];
 
 var interests = [
-    {name: 'chat', count: 1},
-    {name: 'fotos', count: 1},
-    {name: 'chicas', count: 1},
-    {name: 'chicos', count: 1},
-    {name: 'musica', count: 1},
-    {name: 'salir', count: 1},
-    {name: 'bailar', count: 1},
-    {name: 'ropa', count: 1},
-    {name: 'viajes', count: 1}
-    
+  {name: 'chat', count: 1},
+  {name: 'fotos', count: 1},
+  {name: 'chicas', count: 1},
+  {name: 'chicos', count: 1},
+  {name: 'musica', count: 1},
+  {name: 'salir', count: 1},
+  {name: 'bailar', count: 1},
+  {name: 'ropa', count: 1},
+  {name: 'viajes', count: 1}
+
 ];
 
 if (typeof String.prototype.startsWith != 'function') {
@@ -52,7 +52,7 @@ if (typeof String.prototype.startsWith != 'function') {
   };
 }
 
-io.sockets.on('connection', function (socket) {     
+io.sockets.on('connection', function (socket) {
   socket.on('userLogin', function(data) {
     if(users.indexOf(data["username"]) == -1 )
       users[data.username] = socket;
@@ -72,13 +72,13 @@ io.sockets.on('connection', function (socket) {
       ];
 
       for(var index in welcomeInstructions){
-        socket.emit('msgFromServer', { from: 'Bot', to: '', message: welcomeInstructions[index]});
       }
+      socket.emit('msgFromServer', { from: 'Bot', to: '', message: welcomeInstructions[index]});
     }, 1000);
 
   });
 
-  socket.on('displayReadyClient', function(data){    
+  socket.on('displayReadyClient', function(data){
     socket.emit('allConnected', connected);
   });
 
@@ -86,11 +86,11 @@ io.sockets.on('connection', function (socket) {
     var found = [];
 
     for(var i in interests){
-       
+
       if(typeof interests[i].name === "string"){
         //console.log(interests[i].indexOf(interest));
         if(interests[i].name.startsWith(interest)){
-          found.push(interests[i]); 
+          found.push(interests[i]);
         }
       }
       else
@@ -121,30 +121,30 @@ io.sockets.on('connection', function (socket) {
         if( interests[i].count > 1){
           interests[i].count--;
           io.emit('interestList', interests);
-          
+
           break;
         }
       }
     }
   });
 
-  socket.on('msgToServer', function(data){    
+  socket.on('msgToServer', function(data){
     if(data.from !== 'Bot' && users[data.to])
       users[data.to].emit('msgFromServer', { from: data['from'], to: data['to'], message: data['message']});
   });
 
   socket.on('disconnect', function() {
     for(u in users){
-     if(users[u].id == socket.id ){     
-       delete connected[u];
-       delete users[u];
+      if(users[u].id == socket.id ){
+        delete connected[u];
+        delete users[u];
 
-       io.emit('allConnected', connected);
+        io.emit('allConnected', connected);
 
-     }
-   }
+      }
+    }
 
- });
+  });
 
   ss(socket).on('file', function(stream, data) {
     //error handling en stream == null
@@ -154,14 +154,14 @@ io.sockets.on('connection', function (socket) {
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir);
     }
-    
+
     stream.pipe(fs.createWriteStream(dir + data.name));
   });
 
 });
 
 app.get('/',function(req, res){
-  res.setHeader('Content-Type', 'text/html'); 
+  res.setHeader('Content-Type', 'text/html');
   res.send(fs.readFileSync('index.html'));
 });
 
@@ -171,19 +171,19 @@ app.get('/logout',function(req,res){
 
 
 app.post('/login',function(req,res){
-    // validar usuario en la base de datos antes de introducir a la sesion.
-    var dbTestedValidUser = true ;    
+  // validar usuario en la base de datos antes de introducir a la sesion.
+  var dbTestedValidUser = true ;
 
-    if(dbTestedValidUser){
-      if(req.body.username)
-        if(!session.sids[req.body.username]){
-          session.sids[req.body.username] =  req.sessionId; 
-        }
-    }
-    res.json({sessionId: req.sessionID});
+  if(dbTestedValidUser){
+    if(req.body.username)
+      if(!session.sids[req.body.username]){
+        session.sids[req.body.username] =  req.sessionId;
+      }
+  }
+  res.json({sessionId: req.sessionID});
 });
 
 app.get('/get_interests', function(req,res){
-      res.json(interests);
-      res.end();
+  res.json(interests);
+  res.end();
 });

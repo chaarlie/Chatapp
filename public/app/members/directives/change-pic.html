@@ -4,7 +4,7 @@
     <h3 class="modal-title">Cambiar Foto</h3>
 </div>
 <div class="modal-body">
-    <img class="col-md-offset-3" height="300" width="190" ng-src="/files/{{user.pic}}"  ng-show="user.pic">
+    <img class="col-md-offset-3" height="300" width="190" ng-src="/files/{{home.user.pic}}"  ng-show="home.user.pic">
     
     <file-upload class="col-md-offset-3"></file-upload>
     <div class="progress">
@@ -12,8 +12,8 @@
         role="progressbar" aria-valuenow="40" aria-valuemin="0" 
         aria-valuemax="100" style="width: {{picPercent}}%">
         <span class="sr-only">{{picPercent}}% Complete (success)</span>
+        </div>
     </div>
-</div>
 </div>
 
 </div>

@@ -11,7 +11,7 @@ angular.module('chatApp').directive("fileUpload", function(Socket, $compile){
                     scope.picPercent = data;
 
                     if(data === 100){
-                        scope.$broadcast('picUpload', file.name);    
+                        scope.$emit('picUpload', file.name);    
                         console.log(file);
                     }
                 });

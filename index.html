@@ -1,133 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="chatApp">
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Holo Theme</title>
-  <meta name="generator" content="Bootply" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/css/ui-bootstrap-0.13.1-csp.css" rel="stylesheet">
-  <link href="assets/css/angular-chart.css" rel="stylesheet">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Holo Theme</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/ui-bootstrap-0.13.1-csp.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-  <!--[if lt IE 9]>
-  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link href="assets/css/styles.css" rel="stylesheet">
-  
-  <!-- Thirdparty Dependencies -->
-  <script src="assets/js/jquery.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/scripts.js"></script>
-  <script src="assets/js/jquery-ui.min.js"></script>
-  <script src="assets/js/socket.io-1.3.4.js"></script>
-  <script src="assets/js/socket.io-stream.js"></script>
-  <script src="assets/js/chart.js"></script>
+    <link href="assets/css/angular-chart.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    
+    <!-- Thirdparty Dependencies -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/socket.io-1.3.4.js"></script>
+    <script src="assets/js/socket.io-stream.js"></script>
+    <script src="assets/js/chart.js"></script>
 
-  <!-- Angular  Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-  <script src="vendor/angular-cookies.min.js"></script>
-  <script src="vendor/angular-chart.js"></script>  
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-   <script src="vendor/ui-bootstrap-tpls-0.13.1.min.js"></script>
-  
-  <!-- App Services -->
-  <script type="text/javascript" src="app/common/services/session-service.js"></script> 
-  <script type="text/javascript" src="app/common/services/auth-service.js"></script>
-  <script type="text/javascript" src="app/common/services/socket-service.js"></script> 
-  
-  <!-- App Modules -->
-  <script src="app/chat.app.js"></script>
-  <script type="text/javascript" src="app/login/login-controller.js"></script>
-  <script type="text/javascript" src="app/home/home-controller.js"></script>
-  <script type="text/javascript" src="app/interests/interests-controller.js"></script>
+    <!-- Angular  Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="vendor/angular-cookies.min.js"></script>
+    <script src="vendor/angular-chart.js"></script>  
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+     <script src="vendor/ui-bootstrap-tpls-0.13.1.min.js"></script>
+    
+    <!-- App Services -->
+    <script type="text/javascript" src="app/common/services/session-service.js"></script> 
+    <script type="text/javascript" src="app/common/services/auth-service.js"></script>
+    <script type="text/javascript" src="app/common/services/socket-service.js"></script> 
+    
+    <!-- App Modules -->
+    <script src="app/chat.app.js"></script>
+    <script type="text/javascript" src="app/login/login-controller.js"></script>
+    <script type="text/javascript" src="app/home/home-controller.js"></script>
+    <script type="text/javascript" src="app/interests/interests-controller.js"></script>
 
-  <!-- App Directives -->
-  <script type="text/javascript" src="app/home/directives/chatbox-label-directive.js"></script>
-  <script type="text/javascript" src="app/home/directives/file-upload-directive.js"></script>
-  <script type="text/javascript" src="app/home/directives/change-pic-directive.js"></script>
-  <script type="text/javascript" src="app/home/directives/profile-info-directive.js"></script>
-  <script type="text/javascript" src="app/interests/directives/interest-element-directive.js"></script>
-  <script type="text/javascript" src="app/interests/directives/interest-searchbox-directive.js"></script>
-  <script type="text/javascript" src="app/interests/directives/interest-selected-directive.js"></script>
-  <script type="text/javascript" src="app/interests/directives/pie-directive.js"></script>
+    <!-- App Directives -->
+    <script type="text/javascript" src="app/home/directives/chatbox-label-directive.js"></script>
+    <script type="text/javascript" src="app/home/directives/file-upload-directive.js"></script>
+    <script type="text/javascript" src="app/home/directives/change-pic-directive.js"></script>
+    <script type="text/javascript" src="app/home/directives/profile-info-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/interest-element-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/interest-searchbox-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/interest-selected-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/pie-directive.js"></script>
 
-  
+  </head>
+  <style type="text/css">
+    body{
+      background-color: #F9F5F5;
+      color:#383838;
+    }
+    nav ul{
+      float:right; 
+    }
+    .horizontal-list  li, footer li{
+      display:inline
+    }
+    #featured {
+      margin-left: 3%;  
+      padding-top: 30px;
 
-</head>
-<body>
-  <div class="container"  >
+    }
 
-   <!-- top navbar -->
-   <header  id="header-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-     <div class="navbar-header">
-      <div class="row">
-        <div class="col-md-12 visible-md visible-lg">
-         <a class="navbar-brand" href="#" id="logo-text-md">Social Network</a>
-       </div>
+    #featured  div{
+      display: inline-block;
+    }
+    #featured  span{
+     color:#33DEFC;
+    }
+    .bigger-icon{
+      font-size:900% 
+    }
+    .bigger-font{
+      font-size:300%
+    }
 
-       <div class="col-md-12 visible-sm">
-         <a class="navbar-brand" href="#" id="logo-text-sm">Social Network</a>
-       </div>
+  /*Custom Bootstrap*/
+   .navbar-default .navbar-nav > .active > a, 
+  .navbar-default .navbar-nav > .active > a:hover, 
+  .navbar-default .navbar-nav > .active > a:focus {
+      color: white !important;
+      background-color: #2CBFD9 !important;
+      font-weight: bold !important;
+      font-size: 150% !important;
+  }
 
+  footer ul{
+    margin-top: 10%;
+  }
+  footer li{
+     
+  }
 
-       <div class="col-md-12 visible-xs ">
-         <a class="navbar-brand" href="#" id="logo-text-xs">Social Network</a>
-       </div>
-     </div>
-   </div>
- </header>
+  </style>
+  <body>
+    <div class="container" >
+      <header   role="navigation">
+        <nav>
+          <ul class="nav  nav-pills">
+            <li class="active"><a href="#/home">Home</a></li>
+            <li><a href="#/login">Login</a></li>
+            <li><a href="#/register">Register</a></li>
+            <li><a href="#/about">About</a></li>
+            <li><a href="#/contact">Contact</a></li>
+          </ul>
+        </nav>
+     </header>
 
- <div class="hidden-xs">
-   <div id="content" ui-view >
-   </div>
- </div>
-
-</div>
-
-<!-- _________________________ Start Bottom _________________________ -->
-
-
-
-<footer   class="navbar navbar-inverse navbar-fixed-bottom" >
-  <div class="row">
-    <div id="footer-top" class="col-md-12" ></div>    
-  </div>
-
-  <div class="row">
-    <div id="footer-bottom" class="col-md-12"  >
-
-      <div class="bread-crumb">
-        <div id="company-info" class="navbar navbar-fixed-bottom">
-          <ul >
-            <li> 
-              <div class="company-info-container"><span class="glyphicon glyphicon-map-marker company-icon" aria-hidden="true"></span></div>
-              <div ><p class="company-info-text"> 
-                21 Revolution Street,
-                Somewhere Only We Know</p></div>
-
-              </li>
-
-              <li> 
-                <div class="company-info-container"><span class="glyphicon glyphicon-earphone company-icon" aria-hidden="true"></span></div>
-                <div ><p class="company-info-text">+1 809-220-1111</p></div>
-              </li>
-              <li>
-
-               <div class="company-info-container"><span class="glyphicon glyphicon-envelope company-icon" aria-hidden="true"></span></div>
-               <div ><p class="company-info-text">support@company.com</p></div>
-             </ul>
-           </li>
-         </ul>
-       </div>
-     </div>
-
-   </div>
- </div>
-
-</footer>
-
-</body>
+     <div ui-view></div>
+     
+    </div>
+  </body>
 </html>

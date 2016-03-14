@@ -283,10 +283,10 @@ ul.company-info-row li{
 
 
 #login-container{
-  width: 300px;
+  
   height: 300px;
   border-radius: 30px;
-  margin:  auto;  
+  margin-top: 13%; 
   overflow: hidden;  
   border-width: 3px;
   border-style: solid;
@@ -466,6 +466,9 @@ top: 12px;
   } 
 }
 
+.buddy-pic{
+  border-radius: 50%;
+}
 .clicker {
   /*background-image: url('images/yo_odesk.JPG');*/
   outline: none;

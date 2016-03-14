@@ -1,26 +1,26 @@
-<!--I have to do some includes, apparently some html compilation error happens otherwise -->
-<div id="main-info">
-    
+<!-- top navbar -->
+<section id="">
+  <img src="assets/css/images/party.jpg" width="1150" height="460">
+  <h1>The place where the <span>cool</span> people meet each other.</h1>
+  </section>
 
-    <div class="row pull-right">
-        <button class="btn btn-default"><a style="color:white" ui-sref="logoff">logoff</a></button>
-    </div>
-    <div class="row">
-        <profile-info></profile-info>
-    </div>
+  <section id="featured"  >
+  <div class="row col-md-12 col-sm-4" >
+     <div class="col-md-3 col-md-offset-1"> <span  class="fa fa-comments-o bigger-icon     "> </span> <p class="bigger-font  col-md-offset-1">Chat</p></div>
+     <div class="col-md-3 col-md-offset-1"><span class="fa fa-users bigger-icon "> </span>  <p class="bigger-font  col-md-offset-1">Meet</p></div>
+     <div class="col-md-3 col-md-offset-1"><span class="fa fa-newspaper-o  bigger-icon "> </span> <p class="bigger-font  col-md-offset-1">Post</p></div>
+  </div>
+</section>
 
-    <div class="row">
-        <div class="col-md-2 col-sm-2">
-           <div   ng-include="'/app/includes/contacts.html'"></div>
-        </div>
- 
-        <div class="col-lg-2 col-lg-offset-8 col-md-2 col-md-offset-8 col-sm-2  col-sm-offset-8"  id="configuration">
-            <div  ng-include="'/app/includes/routes.html'"></div>     
-        </div>
-    </div>
- 
-    <div class="row">
-      <div ng-repeat="chatbox in chatboxes">
-          <div ng-include src="'/app/includes/chatbox.html'" ></div>  
-      </div>
-   </div> 
+<!-- _________________________ Start Bottom _________________________ -->
+<footer>
+  <div class="row col-md-12    ">
+   <ul >
+    <li class="col-md-offset-1 ">Home</li>
+    <li class="col-md-offset-1">Login</li>
+    <li class="col-md-offset-1">Register</li>
+    <li class="col-md-offset-1">About</li>
+    <li class="col-md-offset-1" >Contact</li>
+      </ul>
+  </div>   
+</footer>
