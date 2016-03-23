@@ -4,11 +4,11 @@ angular.module('chatApp')
         restrict: 'A',
         replace: true,
         scope: true,
-        controller: function($scope, $rootScope){
-
-        },
+        controller:"dashboardController"
+        controllerAs:"dashboard",
         link: function(scope, element, attrs) {
             element.draggable();
+            /*element.draggable();
 
             element.find("span").bind("mousedown", function(){ 
                 var nick = element.find('h3').text();
@@ -53,7 +53,7 @@ angular.module('chatApp')
                     
                     textInput.val("");
                 }
-            });
+            });*/
         }
     }
 });

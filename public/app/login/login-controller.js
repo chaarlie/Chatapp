@@ -7,17 +7,17 @@ angular.module('chatApp')
         };
 
         login.doSubmit = function(){
-            Auth.doLogin(login.user);
+            //Auth.doLogin(login.user);
 
             //A few millis are needed to initialize isAuthenticated()
             $timeout(function(){
-                if(Auth.isAuthenticated()){
+               // if(Auth.isAuthenticated()){
                     Socket.emit('userLogin', {username: login.user.username, age: ''});
                 
-                    Session.createUser(login.user.username);
+                   // Session.createUser(login.user.username);
 
-                    $state.go('home');
-                }
+                    $state.go('dashboard');
+                //}
             }, 500);
         }
     }

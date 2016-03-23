@@ -1,4 +1,4 @@
-var chatApp =  angular.module('chatApp', ['ngCookies', 'chart.js', 'ui.router', 'chatApp.common', 'ui.bootstrap']);
+var chatApp =  angular.module('chatApp', ['ui.router', 'chatApp.common', 'ui.bootstrap']);
           
 chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider){
     $urlRouterProvider.otherwise('/home');
@@ -13,14 +13,10 @@ chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
             url:'/home',
             templateUrl:'app/home/home.html',
         })
-        .state('members', {
-            url:'/members',
-            templateUrl:'app/members/members.html',
-        })
-        .state('interests', {
-            url:'/interests',
-            templateUrl:'/app/interests/interests.html',
-            controller:'interestsController'
+        .state('dashboard', {
+            url:'/dashboard',
+            templateUrl:'app/dashboard/dashboard.html',
+            controller:'dashboardController as dashboard'
         })
         .state('logoff', {
             url:'/logoff',

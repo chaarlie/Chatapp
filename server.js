@@ -63,17 +63,16 @@ io.sockets.on('connection', function (socket) {
     //io.emit('interest-list', interests);
 
     setTimeout(function () {
-      var welcomeInstructions = [
-        '¡Bienvenido!',
-        '-.Esta es una aplicación de chat',
-        '-.Mover el puntero sobre la foto para cambiarla',
-        '-.Para chatear:',
-        '1)abra otro explorador \n 2)elija otro usuario'
-      ];
+      var welcomeInstructions = 
+        '¡Bienvenido! \n'+
+        '-.Esta es una aplicación de chat \n'+
+        '-.Mover el puntero sobre la foto para cambiarla \n'+
+        '-.Para chatear: \n'+
+        '1)abra otro explorador \n2)elija otro usuario'
+      ;
+ 
+        socket.emit('msgFromServer', { "from": "Bot", "to": "", "message": welcomeInstructions});
 
-      for(var index in welcomeInstructions){
-      }
-      socket.emit('msgFromServer', { from: 'Bot', to: '', message: welcomeInstructions[index]});
     }, 1000);
 
   });
