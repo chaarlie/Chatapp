@@ -128,6 +128,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('msgToServer', function(data){
+    console.log(data);
     if(data.from !== 'Bot' && users[data.to])
       users[data.to].emit('msgFromServer', { from: data['from'], to: data['to'], message: data['message']});
   });

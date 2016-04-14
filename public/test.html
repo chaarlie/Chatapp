@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="chatApp">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Holo Theme</title>
-    <meta name="generator" content="Bootply" />
+<html >
+<head>
+	<title></title>
+
+	 <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="assets/css/styles.css" rel="stylesheet">
     
-    <!-- Thirdparty Dependencies -->
+	<!-- Thirdparty Dependencies -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/scripts.js"></script>
@@ -36,79 +34,83 @@
     <script type="text/javascript" src="app/common/services/auth-service.js"></script>
     <script type="text/javascript" src="app/common/services/socket-service.js"></script> 
     
-    <!-- App Modules -->
+     <!-- App Modules -->
     <script src="app/chat.app.js"></script>
     <script type="text/javascript" src="app/login/login-controller.js"></script>
     <script type="text/javascript" src="app/home/home-controller.js"></script>
     <script type="text/javascript" src="app/dashboard/dashboard-controller.js"></script>
 
+
     <!-- App Directives -->
    <script type="text/javascript" src="app/dashboard/directives/chatbox-converter-directive.js"></script>
- <!--    <script type="text/javascript" src="app/home/directives/file-upload-directive.js"></script>
-    <script type="text/javascript" src="app/home/directives/change-pic-directive.js"></script>
-    <script type="text/javascript" src="app/home/directives/profile-info-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/interest-element-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/interest-searchbox-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/interest-selected-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/pie-directive.js"></script> -->
+ 
+	<script type="text/javascript">
+	
+	var app =  angular.module('app', ['ui.router', 'chatApp.common', 'ui.bootstrap']);
 
-  </head>
-  <style type="text/css">
-    body{
-      background-color: #F9F5F5;
-      color:#383838;
-    }
-    nav ul{
-      float:right; 
-    }
-    .horizontal-list  li, footer li{
-      display:inline
-    }
-    #featured {
-      margin-left: 3%;  
-      padding-top: 30px;
+	app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider){
+	    //$urlRouterProvider.otherwise('/home');
+	    
+	    $stateProvider
+	        .state('login', {
+	            url:'/login',
+	            templateUrl:'app/login/login.html'
+	        })
+	        .state('home', {
+	            url:'/home',
+	            templateUrl:'app/home/home.html',
+	        })
+	        .state('dashboard', {
+	            url:'/dashboard',
+	            templateUrl:'app/dashboard/dashboard.html',
+	            controller:'appController as dashboard'
+	        })
+	        .state('logoff', {
+	            url:'/logoff',
+	            templateUrl:'app/logoff/logoff.html',
+	            onEnter: function($state, $timeout, $window){
+	                $timeout(function(){
+	                    $state.go('login'); 
+	                }, 1500);
+	                $timeout(function(){
+	                   $window.location.reload();  
+	                }, 2000)
+	                
+	            } 
+	        });
+	}])
+  
+        app.controller('appController', function($scope, Socket, MessageHandler){
+        Socket.emit('userLogin', {username: 'test', age: ''});
+    	Socket.on('msgFromServer', function (data) {
+            alert('msgFromServer');
+            $scope.chatboxes = MessageHandler.addEntry(data, false);
+            console.log($scope.chatboxes);            
+           // $scope.$emit('message', data);
+        });
+    });
 
-    }
-
-    #featured  div{
-      display: inline-block;
-    }
-    #featured  span{
-     color:#33DEFC;
-    }
-    .bigger-icon{
-      font-size:900% 
-    }
-    .bigger-font{
-      font-size:300%
-    }
-
-  /*Custom Bootstrap*/
-   .navbar-default .navbar-nav > .active > a, 
-  .navbar-default .navbar-nav > .active > a:hover, 
-  .navbar-default .navbar-nav > .active > a:focus {
-      color: white !important;
-      background-color: #2CBFD9 !important;
-      font-weight: bold !important;
-      font-size: 150% !important;
-  }
-
-  footer ul{
-    margin-top: 10%;
-  }
-  footer li{
-     
-  }
-
-  </style>
-  <body>
-    <div class="container" >
+    angular.module('app').service('MessageHandler', function(){
+    	var chatboxes = {};
+    
+    	this.addEntry = function(data, byMe){
+            chatboxes[data.from] = !chatboxes[data.from]?  [] : chatboxes[data.from];
+            chatboxes[data.from].push({text: data.message, byMe: byMe});
+            return chatboxes;
+	    }
+	});
+ 
+	</script>
+</head>
+<body ng-app="app" ng-controller="appController">
+	 <div class="container" >
       <header   role="navigation">
         <nav>
           <ul class="nav  nav-pills">
             <li class="active"><a href="#/home">Home</a></li>
             <li><a href="#/login">Login</a></li>
             <li><a href="#/register">Register</a></li>
+             <li><a href="#/dashboard">Dashboard</a></li>
             <li><a href="#/about">About</a></li>
             <li><a href="#/contact">Contact</a></li>
           </ul>
@@ -118,5 +120,8 @@
      <div ui-view></div>
      
     </div>
-  </body>
+
+</body>
+
+
 </html>

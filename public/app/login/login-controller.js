@@ -14,8 +14,7 @@ angular.module('chatApp')
                // if(Auth.isAuthenticated()){
                     Socket.emit('userLogin', {username: login.user.username, age: ''});
                 
-                   // Session.createUser(login.user.username);
-
+                    Session.createUser(login.user.username);
                     $state.go('dashboard');
                 //}
             }, 500);

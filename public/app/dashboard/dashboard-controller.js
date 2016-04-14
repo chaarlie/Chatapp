@@ -6,53 +6,46 @@ angular.module('chatApp').controller('dashboardController', function(
         
         var dashboard = this;
 
-        dashboard.connected = [{name:"Charlie"}, {name:  "Jhon"}, {name:"Clarissa"} ];
-
         Socket.on('msgFromServer', function (data) {
-         // alert();
-              
-            //$timeout(function(){
-                // $scope.$broadcast('message', data);
-                  $log.log("here");
-                dashboard.chatboxes = JSON.parse( {
-    "from": "Bot",
-    "to": "",
-    "message": "welcomeInstructions"
- });
+            dashboard.chatboxes = MessageHandler.addEntry(data, false);
+            dashboard.msgFrom = data.from;
+
+            $log.log("new msg");
                 $log.log(dashboard.chatboxes);
-            //}, 500);
         });
-/*$timeout(function(){
-            
-        $log.log("despues de cargar");
-        $log.log(dashboard.chatboxes);
-        $scope.$watch('dashboard.chatboxes', function(value){
-            $log.log('wtf');
-            $log.log(value);
+
+        $scope.$on('appendMsgByMe', function(event, data){
+            $scope.$apply(function(){
+                dashboard.chatboxes = MessageHandler.addEntry(data, true);
+            });
         });
-}, 2500);
-        */
-        Socket.on('allConnected', function (data) {
-            $log.log(data);  
+
+        $scope.$on('removeChatbox', function(event, nick){
+             $scope.$apply(function(){
+                dashboard.chatboxes = MessageHandler.deleteEntry(nick);
+            });
+        });
+
+        Socket.on('allConnected', function (data) { 
             dashboard.connected = data;
         });
-
-
-        dashboard.sendMessage = function() {
-            $log.log(dashboard.userMessage);
-             Socket.emit('msgToServer', {message: dashboard.userMessage, from: dashboard.user , to: dashboard.receipient });           
-        }
-
-        
 });
 
-angular.module('chatApp').service('MessageHandler', function(){
-    var chatboxes = [];
-
+angular.module('chatApp').service('MessageHandler', function($log){
+    var chatboxes = {};
+    
     this.addEntry = function(data, byMe){
-            chatboxes[data.from] = !chatboxes[data.from]?  [] : chatboxes[data.from];
-            chatboxes[data.from].push({text: data.message, byMe: byMe});
+        chatboxes[data.from] = !chatboxes[data.from]?  [] : chatboxes[data.from];
+        chatboxes[data.from].push({text: data.message, byMe: byMe});
+        return chatboxes;
+    };
 
-            return chatboxes;
+    this.deleteEntry = function(nick){
+
+        $log.log(delete  chatboxes[nick]); // true
+        $log.log(nick); // it's ok
+        $log.log(chatboxes); // same elements
+
+       return chatboxes;
     }
 });

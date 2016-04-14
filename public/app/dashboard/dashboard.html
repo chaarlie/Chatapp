@@ -1,73 +1,21 @@
-<!--I have to do some includes, apparently some html compilation error happens otherwise -->
 <div id="main-info">
     
    <!--  <div class="row">
         <profile-info></profile-info>
     </div> -->
 
-    <div class="row">
-        <div class="col-md-2 col-sm-2">
-           <div   ng-include="'/app/includes/contacts.html'"></div>
-        </div>
- 
-        <!-- <div class="col-lg-2 col-lg-offset-8 col-md-2 col-md-offset-8 col-sm-2  col-sm-offset-8"  id="configuration">
-            <div  ng-include="'/app/includes/routes.html'"></div>     
-        </div> -->
-    </div>
- 
-
-    <div class="row">
-
-<h1>{{      dashboard.chatboxes | json}}</h1>
-
-<div ng-repeat="d in dashboard.chatboxes">
-<h1>l;l</h1>
-<h1>the ob: {{chatbox | json}}</h1>
+<div class="row">
+  <div class="col-md-2 col-sm-2">
+     <div   ng-include="'/app/includes/contacts.html'"></div>
+  </div>
 </div>
-      <!-- from here 
-      <div ng-repeat="(name, chatbox) in dashboard.chatboxes">
-          <div class="row col-lg-6 col-md-6 col-sm-5 col-xs-6  col-md-offset-4 chatbox "   chatbox-label  >
-            <div class="panel panel-primary col-md-6"  >
-              <div class="panel-heading row">
-                <div class="col-md-6 col-sm-4 col-xs-3">
-                <h3 class="panel-title" class=""  >{{chatbox | json}} </h3>
-                </div>
-                <div class="col-md-6 col-sm-8 col-xs-7">
-                <span id="remove-chatbox" class="glyphicon glyphicon-remove pull-right" style="cursor: pointer;" aria-hidden="true"></span>
-                </div> 
-              </div>
-              <div class="panel-body">
-                
-                  <div id="message-window">
-                    <div >
-                        <div class="row" ng-repeat="msgOb in chatbox[name]">
-                          <div class="chat-bubble bubble-right"  ng-if="msgOb.byMe">      
-                            {{msgOb.text}}
-                          </div>
 
-                          <div class="chat-bubble bubble-left"  ng-if="!msgOb.byMe">      
-                            {{msgOb.text}}
-                          </div>
-                        </div>
-                    </div> 
-                  </div>
-                
-                <hr />
-                <textarea class="form-control" rows="2" id="message-input" ></textarea>
-              </div>
-            </div>
-        </div>  
-      </div>
-      <!-- to here -->
+
+<div class="row">
+  <div ng-if="dashboard.chatboxes === undefined">
+    <h1>it's undefined</h1>
+  </div>
+   <div ng-repeat="(from, msgOb) in dashboard.chatboxes">
+        <div ng-include src="'./app/includes/chatbox.html'" ></div>   
    </div> 
-
-    <div class="row">
-      <p></p>
-      <select ng-model="dashboard.receipient"  ng-options="connected.name for connected in dashboard.connected">
-      </select>
-      <textarea rows="4" class="form-control" ng-model="dashboard.userMessage">
-      </textarea>
-      <button class="btn btn-md btn-success" ng-click="dashboard.sendMessage()">send</button>
-   </div> 
-
-   
+</div>  

@@ -42,12 +42,11 @@ angular.module('chatApp.common')
 				picChunck = 0;
 				blobStream.on('data', function(chunk) {
 					size += chunk.length;
-					
-			                // -> e.g. '42%' 
-			                picChunck = Math.floor(size / data.size * 100);
-			                $rootScope.$broadcast('picChunck', picChunck);     
-			            });
-
+	                // -> e.g. '42%' 
+	                picChunck = Math.floor(size / data.size * 100);
+	                $rootScope.$broadcast('picChunck', picChunck);     
+			    });
+			    
 				blobStream.pipe(stream);
 				stream = null;
 			}
