@@ -6,15 +6,7 @@ angular.module('chatApp')
         link: function(scope, element, attrs) {
 
             element.draggable();
-            element.find("span").bind("mousedown", function(){ 
-                var nick = element.find('h3').text();
-                $rootScope.$broadcast('removeChatbox', nick);
-                element.remove();     
-
-            }); 
-
             
-           
             element.find('textarea').bind("keydown", function(event){   
                 if(event.which === 13){
                     var textInput = $(event.target);

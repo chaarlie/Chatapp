@@ -56,10 +56,10 @@ io.sockets.on('connection', function (socket) {
   socket.on('userLogin', function(data) {
     if(users.indexOf(data["username"]) == -1 )
       users[data.username] = socket;
-    for (var u in users)
-      connected[u] = {username: u};
+    
+    session.user = data["username"];
 
-    io.emit('allConnected', connected);
+    
     //io.emit('interest-list', interests);
 
     setTimeout(function () {
@@ -68,17 +68,16 @@ io.sockets.on('connection', function (socket) {
         '-.Esta es una aplicación de chat \n'+
         '-.Mover el puntero sobre la foto para cambiarla \n'+
         '-.Para chatear: \n'+
-        '1)abra otro explorador \n2)elija otro usuario'
-      ;
- 
+        '1)abra otro explorador \n2)elija otro usuario';
+
+        io.emit('allConnected', Object.keys(users));         
         socket.emit('msgFromServer', { "from": "Bot", "to": "", "message": welcomeInstructions});
 
     }, 1000);
-
   });
 
   socket.on('displayReadyClient', function(data){
-    socket.emit('allConnected', connected);
+    socket.emit('allConnected', Object.keys(users));
   });
 
   socket.on('interestSearch', function(interest){
@@ -128,22 +127,15 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('msgToServer', function(data){
-    console.log(data);
+    //console.log(data);
     if(data.from !== 'Bot' && users[data.to])
       users[data.to].emit('msgFromServer', { from: data['from'], to: data['to'], message: data['message']});
   });
 
   socket.on('disconnect', function() {
-    for(u in users){
-      if(users[u].id == socket.id ){
-        delete connected[u];
-        delete users[u];
-
-        io.emit('allConnected', connected);
-
-      }
-    }
-
+    delete users[session.user];
+    //console.log(Object.keys(users));
+    io.emit('allConnected', Object.keys(users));
   });
 
   ss(socket).on('file', function(stream, data) {

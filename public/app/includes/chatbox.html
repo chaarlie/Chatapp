@@ -1,4 +1,4 @@
-<div class="row" id="chatbox-{{from}}">
+<div class="row">
   <div class="row col-lg-6 col-md-6 col-sm-5 col-xs-6  col-md-offset-4 chatbox "   chatbox-converter   >
     <div class="panel panel-primary col-md-6"  >
       
@@ -7,7 +7,7 @@
         <h3 class="panel-title" class=""  >{{from}} </h3>
         </div>
         <div class="col-md-6 col-sm-8 col-xs-7">
-        <span id="remove-chatbox" class="glyphicon glyphicon-remove pull-right" style="cursor: pointer;" aria-hidden="true"></span>
+        <span id="remove-chatbox" class="glyphicon glyphicon-remove pull-right" style="cursor: pointer;" aria-hidden="true" ng-click="dashboard.removeChatbox(from)"></span>
         </div> 
       </div>
       <div class="panel-body">
