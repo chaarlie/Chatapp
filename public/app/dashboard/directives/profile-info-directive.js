@@ -1,10 +1,10 @@
-angular.module('chatApp').directive("profileInfo", function($cookies){
+angular.module('chatApp').directive("profileInfo", function(){
     return{
-        templateUrl:'/app/home/directives/profile-info.html',
+        templateUrl:'/app/dashboard/directives/profile-info.html',
         restrict: 'E',
         link: function(scope, element, attrs){
             scope.$on('picUpload', function(event, name){
-        alert();
+            alert();
                 
         });
 

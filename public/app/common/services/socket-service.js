@@ -49,6 +49,9 @@ angular.module('chatApp.common')
 			    
 				blobStream.pipe(stream);
 				stream = null;
+			},
+			clean: function(){
+				socket.removeListener();
 			}
 		};
 }]);	

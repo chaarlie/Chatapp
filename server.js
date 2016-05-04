@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 session.sids = [];
-var users = [];
+var users = {};
 var connected = {};
 //var interests = ['chat','fotos', 'chicas', 'chicos', 'musica', 'salir', 'bailar'];
 
@@ -54,9 +54,10 @@ if (typeof String.prototype.startsWith != 'function') {
 
 io.sockets.on('connection', function (socket) {
   socket.on('userLogin', function(data) {
-    if(users.indexOf(data["username"]) == -1 )
+    if(!users.hasOwnProperty(data["username"])){
       users[data.username] = socket;
-    
+      console.log("i override it");
+    }
     session.user = data["username"];
 
     
@@ -70,14 +71,12 @@ io.sockets.on('connection', function (socket) {
         '-.Para chatear: \n'+
         '1)abra otro explorador \n2)elija otro usuario';
 
+          console.log("inside login");
+    console.log(Object.keys(users));
         io.emit('allConnected', Object.keys(users));         
         socket.emit('msgFromServer', { "from": "Bot", "to": "", "message": welcomeInstructions});
 
     }, 1000);
-  });
-
-  socket.on('displayReadyClient', function(data){
-    socket.emit('allConnected', Object.keys(users));
   });
 
   socket.on('interestSearch', function(interest){
@@ -134,7 +133,8 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('disconnect', function() {
     delete users[session.user];
-    //console.log(Object.keys(users));
+    console.log("inside disconnect");
+    console.log(Object.keys(users));
     io.emit('allConnected', Object.keys(users));
   });
 

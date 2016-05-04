@@ -1,5 +1,5 @@
 angular.module('chatApp')
-    .controller('loginController', function( $timeout, $state, $scope, $rootScope, Auth, Socket, Session ){
+    .controller('loginController', function( $timeout, $state, Auth, Socket, Session ){
         var login = this;
         login.user = {
             username: '',

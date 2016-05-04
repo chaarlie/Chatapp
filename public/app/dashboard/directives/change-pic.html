@@ -4,7 +4,7 @@
     <h3 class="modal-title">Cambiar Foto</h3>
 </div>
 <div class="modal-body">
-    <img class="col-md-offset-3" height="300" width="190" ng-src="/files/{{home.user.pic}}"  ng-show="home.user.pic">
+    <img class="col-md-offset-3" height="300" width="190" ng-src="/files/{{dashboard.user.pic}}"  ng-show="dashboard.user.pic">
     
     <file-upload class="col-md-offset-3"></file-upload>
     <div class="progress">
@@ -18,5 +18,8 @@
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="">OK</button>
+    <div class="row">
+        <button class="btn btn-primary" type="button" ng-click="dashboard.proceedPicUpload()">Ok</button>
+        <button class="btn btn-primary" type="button" ng-click="dashboard.cancelPicUpload()">Cancel</button>
+    </div>
 </div>

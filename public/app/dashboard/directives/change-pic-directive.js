@@ -1,6 +1,6 @@
 angular.module('chatApp').directive("changePic", function(){
     return{
-        template:'<button id="change-pic" style="visibility:hidden" class="btn btn-default">Cambiar</button>',
+        template:'',
         restrict: 'E',
         
         link:function(scope, element, attrs, controller){

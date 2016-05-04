@@ -16,7 +16,7 @@ chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
         .state('dashboard', {
             url:'/dashboard',
             templateUrl:'app/dashboard/dashboard.html',
-            controller:'dashboardController as dashboard'
+            controller:'dashboardController as dashboard' 
         })
         .state('logoff', {
             url:'/logoff',
@@ -36,17 +36,6 @@ chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
     $rootScope.chatboxes  = {};
  
    $rootScope.$on('$stateChangeStart', function (event, toState) {
-      //Sample authentication 
-/*
-      if(toState.url === "/home"){        
-         if(!Auth.isAuthenticated()){
-             event.preventDefault();
-             $state.go('login');
-         }
-      }
-      if(toState.url === "/login"){
-         if(Auth.isAuthenticated())
-           event.preventDefault();
-      }*/
+
   });  
 });

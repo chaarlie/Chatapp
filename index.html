@@ -3,16 +3,17 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Holo Theme</title>
+    <title>Chat App</title>
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/ui-bootstrap-0.13.1-csp.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link href="assets/css/angular-chart.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-3.3.6.css">
     <link href="assets/css/styles.css" rel="stylesheet">
     
     <!-- Thirdparty Dependencies -->
@@ -25,33 +26,13 @@
     <script src="assets/js/chart.js"></script>
 
     <!-- Angular  Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <script src="vendor/angular-chart.js"></script>  
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-     <script src="vendor/ui-bootstrap-tpls-0.13.1.min.js"></script>
-    
-    <!-- App Services -->
-    <script type="text/javascript" src="app/common/services/session-service.js"></script> 
-    <script type="text/javascript" src="app/common/services/auth-service.js"></script>
-    <script type="text/javascript" src="app/common/services/socket-service.js"></script> 
-    <script type="text/javascript" src="app/common/services/message-handler.js"></script> 
-    
-    <!-- App Modules -->
-    <script src="app/chat.app.js"></script>
-    <script type="text/javascript" src="app/login/login-controller.js"></script>
-    <script type="text/javascript" src="app/home/home-controller.js"></script>
-    <script type="text/javascript" src="app/dashboard/dashboard-controller.js"></script>
-
-    <!-- App Directives -->
-   <script type="text/javascript" src="app/dashboard/directives/chatbox-converter-directive.js"></script>
- <!--    <script type="text/javascript" src="app/home/directives/file-upload-directive.js"></script>
-    <script type="text/javascript" src="app/home/directives/change-pic-directive.js"></script>
-    <script type="text/javascript" src="app/home/directives/profile-info-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/interest-element-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/interest-searchbox-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/interest-selected-directive.js"></script>
-    <script type="text/javascript" src="app/interests/directives/pie-directive.js"></script> -->
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/ui-router.min-0.2.15.js"></script> 
+    <script src="vendor/angular-chart.min.js"></script>  
+    <script src="vendor/angular-animate.min.js"></script>
+    <script src="vendor/angular-touch.min.js"></script> 
+    <script src="vendor/ui-bootstrap.js"></script>
+    <script src="vendor/ui-bootstrap-tpls.js"></script>
 
   </head>
   <style type="text/css">
@@ -68,7 +49,6 @@
     #featured {
       margin-left: 3%;  
       padding-top: 30px;
-
     }
 
     #featured  div{
@@ -85,39 +65,81 @@
     }
 
   /*Custom Bootstrap*/
-   .navbar-default .navbar-nav > .active > a, 
-  .navbar-default .navbar-nav > .active > a:hover, 
-  .navbar-default .navbar-nav > .active > a:focus {
-      color: white !important;
-      background-color: #2CBFD9 !important;
-      font-weight: bold !important;
-      font-size: 150% !important;
-  }
 
   footer ul{
     margin-top: 10%;
   }
-  footer li{
-     
+  nav {
+    padding: 14px 24px 70px 0px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+  }
+  .nav-pills li a:hover{
+    background: white;
+    color: #2CBFD9;
   }
 
+.nav-pills li a:focus{
+    opacity: 0.5;
+}
+ 
+footer div ul{
+  padding-left: 15%;
+} 
+.nav-pills li.active a{
+    background: #2CBFD9;
+    color: white;
+}
+ 
   </style>
   <body>
     <div class="container" >
       <header   role="navigation">
         <nav>
-          <ul class="nav  nav-pills">
-            <li class="active"><a href="#/home">Home</a></li>
+          <ul class="nav nav-pills">
+            <li class=""><a href="#/home">Home</a></li>
             <li><a href="#/login">Login</a></li>
             <li><a href="#/register">Register</a></li>
             <li><a href="#/about">About</a></li>
             <li><a href="#/contact">Contact</a></li>
           </ul>
         </nav>
+        <script type="text/javascript">
+          $(".nav-pills li a").click(function(event){
+            $(this).parents("li").addClass("active").css({opacity:1.0});
+          });
+        </script>
      </header>
 
      <div ui-view></div>
      
     </div>
+
+
+    <!-- App Services -->
+    <script type="text/javascript" src="app/common/services/session-service.js"></script> 
+    <script type="text/javascript" src="app/common/services/auth-service.js"></script>
+    <script type="text/javascript" src="app/common/services/socket-service.js"></script> 
+    <script type="text/javascript" src="app/common/services/message-handler-service.js"></script>
+    <script type="text/javascript" src="app/common/services/user-service.js"></script> 
+    
+    <!-- App Modules -->
+    <script src="app/chat.app.js"></script>
+    <script type="text/javascript" src="app/login/login-controller.js"></script>
+    <script type="text/javascript" src="app/dashboard/dashboard-controller.js"></script>
+
+    <!-- App Directives -->
+    <script type="text/javascript" src="app/dashboard/directives/chatbox-converter-directive.js"></script>
+    <script type="text/javascript" src="app/dashboard/directives/profile-info-directive.js"></script>
+    <script type="text/javascript" src="app/dashboard/directives/file-upload-directive.js"></script>
+    <script type="text/javascript" src="app/dashboard/directives/change-pic-directive.js"></script>
+    <!--<script type="text/javascript" src="app/dashboard/directives/profile-info-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/interest-element-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/interest-searchbox-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/interest-selected-directive.js"></script>
+    <script type="text/javascript" src="app/interests/directives/pie-directive.js"></script>--> 
   </body>
 </html>
