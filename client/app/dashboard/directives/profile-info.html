@@ -1,0 +1,21 @@
+<div class="row">
+<div  id="profile-info" class="col-md-offset-3 col-sm-offset-2  col-xs-offset-3 "  >
+  <div class="col-md-2 col-sm-3 "> 
+    <div id="profile-pic"class="wrap" >
+     
+       <img class="clicker" ng-src="/files/{{dashboard.user.pic}}" >
+       
+       <div id="spinner" >
+       </div>
+
+      <button id="change-pic" style="visibility:hidden" class="btn btn-default" ng-click="dashboard.openModal()">Change</button>
+   </div>
+ </div>
+ <div  class="col-md-4   col-sm-5 col-xs-7"> 
+  <div class="alert alert-info" role="alert">
+    <h4 class="col-lg-offset-3">Welcome <br> {{dashboard.user.username}}</h4>
+    <a href="#" class="alert-link"></a>
+  </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,35 @@
+<div id="main-info" >
+
+  <div class="row">
+    <profile-info></profile-info>
+  </div>  
+
+  <div class="row">
+    <div class="col-md-3 col-sm-2">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3>Contacts</h3>
+        </div>
+
+        <ul class="list-group" id="contact-list">
+          <li ng-repeat="c in dashboard.connected "  ng-click="dashboard.createChatbox(c)" class="list-group-item col-lg-offset-2">
+            <div  class="col-lg-6 col-md-offset-1">
+              <img src="files/{{dashboard.user.pic}}"  class="img-responsive img-circle" /> 
+            </div>
+            <div class="col-xs-12 col-sm-9">
+              <button type="button" class="btn btn-default navbar-btn">{{c}}</button>
+              <hr>
+            </div>
+            <div class="clearfix"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+   <div ng-repeat="(from, msgOb) in dashboard.chatboxes">
+    <div ng-include src="'./app/includes/chatbox.html'" ></div>   
+  </div> 
+</div>  
