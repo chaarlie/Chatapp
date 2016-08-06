@@ -19,10 +19,6 @@ module.exports = function (io, ss, session) {
       
       User.findOne({username: data['username'], password: data['password'] }, function(err, doc){
 
-        if(!users.hasOwnProperty(data["username"]) && data["username"]){
-            users[data.username] = socket;
-          }
-
         if(err){
           console.log(err);
         }
@@ -32,10 +28,14 @@ module.exports = function (io, ss, session) {
         }
 
         else{
+
+          if(!users.hasOwnProperty(data["username"]) && data["username"]){
+            users[data.username] = socket;
+          }
         
           session.user = data["username"];
 
-          socket.emit('sockid', socket.id );
+          socket.emit('login-detail', {id: socket.id, username: session.user});
 
           setTimeout(function () {
             var welcomeInstructions = 
@@ -45,8 +45,6 @@ module.exports = function (io, ss, session) {
             '-.To chat: \n'+
             '1)Open a new browser/incognito session \n2)Choose another user';
 
-            //console.log("inside login");
-            //console.log(Object.keys(users));
             io.emit('allConnected', Object.keys(users));         
             socket.emit('msgFromServer', { "from": "Bot", "to": "", "message": welcomeInstructions});
           }, 1000);
@@ -121,7 +119,7 @@ module.exports = function (io, ss, session) {
     });
 
     socket.on('msgToServer', function(data){
-      //console.log(data);
+      console.log(data);
       if(data.from !== 'Bot' && users[data.to])
         users[data.to].emit('msgFromServer', { from: data['from'], to: data['to'], message: data['message']});
     });

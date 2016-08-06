@@ -4,9 +4,8 @@
 
 	 function Auth ($http, Session, Socket){
 
-		Socket.on("sockid", function(data){
-			Session.create(data);
-			console.log("this is sockid " + data );
+		Socket.on("login-detail", function(data){
+			Session.create(data.id, data.username);
 		});
 
 		function doLogin(user){

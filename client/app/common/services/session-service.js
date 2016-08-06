@@ -3,14 +3,12 @@
 		.service('Session', Session);
 
 	function Session() {
-	    this.create = function (sessionId) {
-	        this.id = sessionId;  
+	    this.create = function (id, username) {
+	        this.id = id;
+	        this.username = username;  
 	    };
 	    this.destroy = function () {
 	        this.id = null;    
-	    };
-	    this.createUser = function(username){
-	        this.username = username;
 	    };
 	};
 }());

@@ -21,9 +21,6 @@ var path = require('path');
 var database = require('./server/config/database');
 
 var index = require('./server/routes/index');
-var register = require('./server/routes/register');
-var interests = require('./server/routes/interests');
-var logout = require('./server/routes/logout');
 
 app.use(cookieParser());
 app.use(session({
@@ -38,9 +35,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', index);
-app.use('/get_interests', interests);
-app.use('/register', register);
-app.use('/logout', logout);
 
 require('./server/socket/socket-handler')(io, ss, session);
 

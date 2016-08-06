@@ -22,12 +22,12 @@
             });
 
             login.doSubmit = function(){
+
                 Auth.doLogin(login.user);
 
                 //A few millis are needed to initialize isAuthenticated()
                 $timeout(function(){
                    if(Auth.isAuthenticated()){
-                        Session.createUser(login.user.username);
                         $state.go('dashboard');
                     }
                 }, 500);
