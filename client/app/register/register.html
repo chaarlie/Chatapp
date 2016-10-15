@@ -1,10 +1,10 @@
-<form class="form-horizontal" style="margin-top:8%"  ng-submit="register.doSubmit()">
+<!-- <form class="form-horizontal" style="margin-top:8%"  ng-submit="register.doSubmit()">
 <fieldset>
 
-<!-- Form Name -->
+ 
 <legend>Register User</legend>
 
-<!-- Text input-->
+ 
 <div class="form-group">
   <label class="col-md-4 control-label" for="username">username</label>  
   <div class="col-md-3">
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+ 
 <div class="form-group">
   <label class="col-md-4 control-label" for="name">name</label>  
   <div class="col-md-2">
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+ 
 <div class="form-group">
   <label class="col-md-4 control-label" for="Last name">Last name</label>  
   <div class="col-md-2">
@@ -30,15 +30,14 @@
   </div>
 </div>
 
-<!-- Text input-->
-<div class="form-group">
+ <div class="form-group">
   <label class="col-md-4 control-label" for="Email">email</label>  
   <div class="col-md-3">
   <input id="Email" name="Email" ng-model="register.newUser.email" type="text" placeholder="email" class="form-control input-md"> 
   </div>
 </div>
 
-<!-- Password input-->
+ 
 <div class="form-group">
   <label class="col-md-4 control-label" for="Password">password</label>
   <div class="col-md-2">
@@ -46,7 +45,7 @@
   </div>
 </div>
 
-<!-- Button -->
+ 
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
@@ -62,4 +61,112 @@
             <div class="panel-heading"> <h3 class="col-lg-offset-2">The user  <em>{{register.newUserCreated}}</em> has been created</h3></div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+<div id="registration">
+    <div class="col-md-6 col-md-offset-2">
+      <div class=" col-md-offset-1">
+        <div class="row col-md-offset-3 reg-header">
+          <div class="col-md-offset-3 ">
+            <h1>Register Now</h1>
+          </div>    
+        </div>
+        <div class="row col-md-offset-3 reg-header">
+            <div class="col-md-offset-2 ">
+            <ul>
+              <li>
+                <div class="circle-container smaller">
+                  <div class="circle " ui-sref-active="active-step" ><a ui-sref=".user">1</a></div>
+                  <br>
+                  <div class="step">
+                    <p>User</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="circle-container smaller col-md-offset-3  ">
+                <div class="circle col-md-offset-3" ui-sref-active="active-step" ><a ui-sref=".account">2</a></div>
+                <br>
+                  <div class=" step">
+                    <p>Account</p>
+                  </div>
+              </div>
+              </li>
+              <li>
+
+              <li>
+                <div class="circle-container smaller col-md-offset-4  ">
+                <div class="circle col-md-offset-3" ui-sref-active="active-step" ><a ui-sref=".interests">3</a></div>
+                <br>
+                  <div class=" step">
+                    <p>interests</p>
+                  </div>
+              </div>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+
+        <div class="row col-md-offset-3 reg-body">
+          <div class="col-md-offset-2 ">
+            <form>
+                  <div ui-view></div>
+            </form>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style type="text/css">
+    li{
+      display: inline-block;
+      padding-top: 7%;
+    }
+
+    .circle{
+      position: relative;
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background-color: #050505;
+      padding-top: 7px;
+      text-align:center;
+      border-radius: 50%;
+    }
+
+    div.circle  a{
+
+        color:white;
+       text-decoration: none !important;
+    }
+    
+    #registration li a{
+      padding-top: 10%;
+      text-transform: uppercase;
+    }
+    .smaller{
+      color:#f5f4f4;
+      font-size: 75%
+    }
+    .reg-header{
+      background-color: #151515;
+ 
+    }
+  
+    .reg-body{
+      background-color: #202020;
+      
+    }
+    .active-step  {
+      background-color: #00BC8C;
+    }
+    #registration{
+      margin-top: 7%;
+      color:#f5f4f4;
+    }
+  </style>
