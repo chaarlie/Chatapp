@@ -1,5 +1,5 @@
-chatApp
-    .directive('interestSearchbox', function($http, $timeout, Socket){
+
+angular.module('chatApp').directive('interestSearchbox', function($http, $timeout, Socket){
         return{
             templateUrl: '/app/interests/directives/interest-searchbox.html',
             link:function(scope, element, attribute){

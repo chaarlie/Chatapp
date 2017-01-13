@@ -1,41 +1,52 @@
 
-<div class="col-md-offset-4 col-sm-offset-2 col-md-4 col-sm-8 col-xs-12 " id="login-container">
-    
-    <div id="login-header"></div>
-        <form  ng-submit="login.doSubmit()" method="post" class="form-horizontal">
-            
-            <div id="login-input">
-                <div class="form-group">
-                    <span class="glyphicon glyphicon-record control-label col-xs-2 login-icon" ></span>
-                    <div class="col-md-6 col-xs-6 ">
-                        <input type="text"  ng-model="login.user.username"   class="form-control input-sm chat-input"  placeholder="username" />
-                    </div>  
-                </div>
-
-                <div class="form-group">
-                    <span class="glyphicon glyphicon-record control-label col-xs-2 login-icon" ></span>
-                    <div class="col-md-6 col-xs-6">
-                        <input type="password"  ng-model="login.user.password"   class="form-control input-sm chat-input"  placeholder="anything.." />
-                    </div>  
-                </div>
+<div class="dark-form">
+    <div class="col-md-7 col-md-offset-1">
+      <div class=" col-md-offset-1">
+        <div class="row col-md-offset-3 reg-header">
+          <div class="col-md-offset-1 ">
+            <div class="col-md-offset-1 ">
+                <h1>Login Credentials</h1>
             </div>
-
-            <div id="login-middle-logo">
-                <span class="glyphicon glyphicon-lock" ></span> 
-
-            </div>
-
-            <button  id="login-submit" type="submit" class="btn btn-primary">Login</button>
-
-        </form>
-    </div>
-
-</div>
-
-<div style="margin-top:10%" ng-show="login.isInvalid" >
-    <div class="col-md-offset-4 col-sm-offset-2 col-md-4 col-sm-8 col-xs-12 ">
-        <div class="panel panel-danger">
-            <div class="panel-heading"> <h3 class="col-lg-offset-2">Wrong credentials</h3></div>
+          </div>    
         </div>
+        <div class="row col-md-offset-3 reg-header">
+            
+        </div>
+
+        <div class="row col-md-offset-3 reg-body">
+          <div class="col-md-offset-2 ">
+            <br>
+            <form  ng-submit="login.doSubmit()" ng-show="!login.invalid">
+                <div class="row">
+                <div class="form-group col-md-7  col-md-offset-1">
+                  <label  >Username</label>
+                  <input type="text" class="form-control "  ng-model="login.user.username" >
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group col-md-7 col-md-offset-1">
+                    
+                  <label  >Password</label>
+                  <input type="password" class="form-control "  ng-model="login.user.password" >
+                 
+                </div>
+                </div>
+
+                 <br>
+                <div class="form-group col-md-6 col-md-offset-1" >
+                  <div class="col-md-offset-2">
+                    <button class="btn btn-block btn-primary">Login</button>
+                  </div>
+                </div>      
+            </form>
+
+            <div  class="form-group col-md-7 col-md-offset-1  error-response " ng-show="login.invalid"  >
+                <div class="col-md-offset-1">{{login.invalid}}</div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </div>
     </div>
-</div>
+  </div>

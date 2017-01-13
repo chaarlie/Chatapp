@@ -8,7 +8,8 @@
 	        this.username = username;  
 	    };
 	    this.destroy = function () {
-	        this.id = null;    
+	        this.id = null; 
+	        this.username = null;      
 	    };
 	};
 }());

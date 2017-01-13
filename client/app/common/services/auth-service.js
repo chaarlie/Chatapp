@@ -4,12 +4,23 @@
 
 	 function Auth ($http, Session, Socket){
 
-		Socket.on("login-detail", function(data){
-			Session.create(data.id, data.username);
-		});
-
 		function doLogin(user){
-			Socket.emit('userLogin', {username: user.username, password: user.password});
+			//alert("res");
+			/*$http.post("/api/login", JSON.stringify(user),  function(res){
+				//alert(res);
+
+			});*/
+
+			$http({
+				method: "post",
+				url:"/api/login",
+				data: JSON.stringify(user)
+			}).success(function(res){
+				if(res){
+					Session.create(res.id, res.username);
+				 
+				}
+			});
 		};
 
 		function isAuthenticated(){

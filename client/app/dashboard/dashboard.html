@@ -4,29 +4,90 @@
     <profile-info></profile-info>
   </div>  
 
-  <div class="row">
-    <div class="col-md-3 col-sm-2">
-      <div class="panel panel-default">
+    <div class="col-md-4" >
+      <div ng-class="{'col-md-8': !dashboard.expandMenu ,  'col-md-12':  dashboard.expandMenu }" >
+        
+        <div class="row col-md-12 dark-container-header ">
+            <h2><span >
+              <i 
+              aria-hidden="true"
+              ng-click="dashboard.toggleMenuIcon()"
+              ng-class="{'fa fa-lg  pull-right': true, 'fa-align-justify': !dashboard.expandMenu ,  'fa-align-right':  dashboard.expandMenu }">
 
-        <div class="panel-heading">
-          <h3>Contacts</h3>
+            </i>
+            </span> Contacts  </h3>
         </div>
 
-        <ul class="list-group" id="contact-list">
-          <li ng-repeat="c in dashboard.connected "  ng-click="dashboard.createChatbox(c)" class="list-group-item col-lg-offset-2">
-            <div  class="col-lg-6 col-md-offset-1">
-              <img src="files/{{dashboard.user.pic}}"  class="img-responsive img-circle" /> 
+        <div class="row col-md-12 dark-container-body scrollme" ng-scrollbar>
+          <br>
+
+          
+          <div   ng-repeat="c in dashboard.connected " class="col-md-offset-1 online-user">
+            <div class="col-md-offset-2">
+              <img 
+                src="../files/blank-user.jpg" 
+                width="80" height="80" 
+                ng-class="{'online-user-pic': true, 'adjust-online-user-pic':  dashboard.expandMenu }"  
+                ng-click="dashboard.createChatbox(c)">
             </div>
-            <div class="col-xs-12 col-sm-9">
-              <button type="button" class="btn btn-default navbar-btn">{{c}}</button>
-              <hr>
+            <div class="user-nick">
+              {{c}}
             </div>
-            <div class="clearfix"></div>
-          </li>
-        </ul>
+            <br>
+            <br>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-  </div>
+    </div><!--main-container-->
+
+  <style type="text/css">
+
+  .user-nick{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: #cfd2d6;
+    display:inline-block;
+    width:130px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+    font-size: 130%;
+    padding-left: 7%;
+  }
+  
+  .dark-container-header{
+      background-color: #151515;
+      color:#f5f4f4;
+    }
+  .dark-container-body{
+    padding-left: 0px;
+      height: 400px;
+      background-color: #202020;  
+    }
+    .online-user:hover{
+      background-color: rgba(10,9,9,0.36);
+    }
+
+    .online-user-pic{
+      border-radius: 50%;
+      border: 3px solid #c2d1c8;
+      margin-left: 12%;
+      margin-top: 5%;
+    }
+    .adjust-online-user-pic{
+        margin-left: -15%;
+        margin-top: 10%;
+    }
+
+    .online-user-pic:active{
+      opacity: 0.46
+    }
+
+   
+  </style>
+
 
   <div class="row">
    <div ng-repeat="(from, msgOb) in dashboard.chatboxes">

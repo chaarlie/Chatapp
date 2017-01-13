@@ -1,5 +1,5 @@
 (function(){
-    var chatApp =  angular.module('chatApp', ['ui.router', 'chatApp.common', 'ui.bootstrap']);
+    var chatApp =  angular.module('chatApp', ['ui.router', 'chatApp.common', 'ui.bootstrap', 'chart.js', 'ngScrollbar']);
          
           
     chatApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider){
@@ -39,32 +39,40 @@
             })
             .state('register.interests', {
                 parent:'register',
-                url:'/user',
-                templateUrl:'app/register/templates/register-user.html'              
+                url:'/interest',
+                templateUrl:'app/register/templates/register-interests.html',
+                controller:'registerController'             
             })
             .state('logoff', {
                 url:'/logoff',
-                templateUrl:'app/logoff/logoff.html',
-                onEnter: function($state, $timeout, $window){
-                    $timeout(function(){
-                        $state.go('login'); 
-                    }, 1500);
-                    $timeout(function(){
-                       $window.location.reload();  
-                    }, 2000)
-                } 
+                templateUrl:'app/logoff/logoff.html'
             });
     }]);
 
-    chatApp.run(function ($rootScope, $location, $state, Auth, Session) {
+    chatApp.run(function ($rootScope, $location, $state, $http, $timeout, Session, Auth, LoadMenuService) {
         $rootScope.messages = [];
         $rootScope.chatboxes  = {};
-     
+
         $rootScope.$on('$stateChangeStart', function(evt, to, params) {
-          if (to.redirectTo) {
-            evt.preventDefault();
-            $state.go(to.redirectTo, params)
-          }
+            //alert(Auth.isAuthenticated());
+
+            if(Session.id && to.name == 'dashboard'){
+              $rootScope.$broadcast('switchMenu');
+            }
+
+            if(Session.id && to.name == 'logoff'){
+              Session.destroy();
+              
+              $timeout(function(){
+                $rootScope.$broadcast('switchMenu');
+                $state.go('login'); 
+              }, 1500);
+            }
+
+            if (to.redirectTo) {
+                evt.preventDefault();
+                $state.go(to.redirectTo, params)
+            }
         });
     });
 }());

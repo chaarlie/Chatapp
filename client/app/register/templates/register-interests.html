@@ -1,0 +1,47 @@
+
+<div class="row " ng-if="!register.newUserResponse">                                            
+  <div class="col-md-10 col-sm-6 ">
+    <pie></pie>
+  </div> 
+</div>
+ 
+<div class="row" ng-if="!register.newUserResponse">
+<div >  
+  <div class="col-md-5 col-md-offset-2">
+    <form class="form-horizontal">
+      <fieldset>
+        <div class="row">
+          <div id="interest-selected-container"  >
+           <div  class="interest interest-selected"   ng-repeat="interest in register.newUser.interests ">
+                {{interest.name}} 
+                <span delete-interest name="{{interest.name}}" class="icon-cancel"></span>
+           </div>
+          </div>
+        </div>
+     </fieldset>
+    </form>
+</div> 
+
+  </div>
+
+</div>
+
+<div class="row" ng-if="register.newUserResponse">
+  <br>
+  <br>
+  <div class="col-md-8 col-sm-6 col-md-offset-1 success-response" >
+    <div class="col-md-offset-1">
+            {{register.newUserResponse}}
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="form-group col-md-7 col-md-offset-1" ng-if="!register.newUserResponse">
+      <div class="col-md-offset-2">
+        <a ui-sref="register.interests" class="btn btn-block btn-primary" ng-click="register.doSubmit()"> Finish </span>
+      </a>
+    </div>
+</div>

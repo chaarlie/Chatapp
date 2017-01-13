@@ -1,70 +1,5 @@
-<!-- <form class="form-horizontal" style="margin-top:8%"  ng-submit="register.doSubmit()">
-<fieldset>
-
  
-<legend>Register User</legend>
-
- 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="username">username</label>  
-  <div class="col-md-3">
-  <input id="username" name="username" ng-model="register.newUser.username" type="text" placeholder="username" class="form-control input-md" required="">
-  </div>
-</div>
-
- 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="name">name</label>  
-  <div class="col-md-2">
-  <input id="name" name="name" ng-model="register.newUser.name" type="text" placeholder="name" class="form-control input-md" required="">
-    
-  </div>
-</div>
-
- 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Last name">Last name</label>  
-  <div class="col-md-2">
-  <input id="Last name" ng-model="register.newUser.lastName" name="Last name" type="text" placeholder="last-name" class="form-control input-md">
-  <span class="help-block"> </span>  
-  </div>
-</div>
-
- <div class="form-group">
-  <label class="col-md-4 control-label" for="Email">email</label>  
-  <div class="col-md-3">
-  <input id="Email" name="Email" ng-model="register.newUser.email" type="text" placeholder="email" class="form-control input-md"> 
-  </div>
-</div>
-
- 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Password">password</label>
-  <div class="col-md-2">
-    <input id="Password" name="Password" ng-model="register.newUser.password" type="password" placeholder="password" class="form-control input-md" required="">
-  </div>
-</div>
-
- 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="singlebutton"></label>
-  <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-success">Submit</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-<div  ng-show="register.success">
-    <div class="col-md-offset-4 col-sm-offset-2 col-md-4 col-sm-8 col-xs-12 ">
-        <div class="panel panel-success">
-            <div class="panel-heading"> <h3 class="col-lg-offset-2">The user  <em>{{register.newUserCreated}}</em> has been created</h3></div>
-        </div>
-    </div>
-</div> -->
-
-
-<div id="registration">
+<div class="dark-form">
     <div class="col-md-6 col-md-offset-2">
       <div class=" col-md-offset-1">
         <div class="row col-md-offset-3 reg-header">
@@ -74,7 +9,7 @@
         </div>
         <div class="row col-md-offset-3 reg-header">
             <div class="col-md-offset-2 ">
-            <ul>
+            <ul id="steps-list">
               <li>
                 <div class="circle-container smaller">
                   <div class="circle " ui-sref-active="active-step" ><a ui-sref=".user">1</a></div>
@@ -100,7 +35,7 @@
                 <div class="circle col-md-offset-3" ui-sref-active="active-step" ><a ui-sref=".interests">3</a></div>
                 <br>
                   <div class=" step">
-                    <p>interests</p>
+                    <p>Interests</p>
                   </div>
               </div>
               </li>
@@ -121,52 +56,3 @@
       </div>
     </div>
   </div>
-
-  <style type="text/css">
-    li{
-      display: inline-block;
-      padding-top: 7%;
-    }
-
-    .circle{
-      position: relative;
-      display: inline-block;
-      width: 28px;
-      height: 28px;
-      background-color: #050505;
-      padding-top: 7px;
-      text-align:center;
-      border-radius: 50%;
-    }
-
-    div.circle  a{
-
-        color:white;
-       text-decoration: none !important;
-    }
-    
-    #registration li a{
-      padding-top: 10%;
-      text-transform: uppercase;
-    }
-    .smaller{
-      color:#f5f4f4;
-      font-size: 75%
-    }
-    .reg-header{
-      background-color: #151515;
- 
-    }
-  
-    .reg-body{
-      background-color: #202020;
-      
-    }
-    .active-step  {
-      background-color: #00BC8C;
-    }
-    #registration{
-      margin-top: 7%;
-      color:#f5f4f4;
-    }
-  </style>

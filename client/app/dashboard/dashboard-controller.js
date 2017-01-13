@@ -2,19 +2,23 @@
     angular.module('chatApp').controller('dashboardController',
         [
             '$scope',  '$log', 'Session', 
-            '$uibModal', 'Socket', 'MessageHandler',
+            '$uibModal', 'Socket', 'MessageHandler', 'LoadMenuService',
              dashboardController
         ]
     );
 
     function dashboardController (
         $scope,  $log, Session, 
-        $uibModal, Socket, MessageHandler
+        $uibModal, Socket, MessageHandler, 
+        LoadMenuService
     ){
+        
     
         var dashboard = this;
         dashboard.user = {};
         dashboard.user.pic = 'blank-user.jpg';
+        dashboard.expandMenu = false;
+        dashboard.nav = LoadMenuService.menu.dashboard; 
 
         //if there are messages on the service they should
         // be displayed when you come back from another route
@@ -79,6 +83,11 @@
                 keyboard: true 
             });
         };
+
+        dashboard.toggleMenuIcon = function(){
+    
+            dashboard.expandMenu = !dashboard.expandMenu;
+        }
     };
 }());
 

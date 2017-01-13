@@ -1,9 +1,9 @@
 (function(){
     
     angular.module('chatApp')
-        .controller('loginController', ['$timeout','$scope', '$state', 'Auth', 'Socket', 'Session', loginController]);
+        .controller('loginController', ['$timeout', '$state', 'Auth', 'Session', '$http', loginController]);
             
-        function loginController( $timeout, $scope, $state, Auth, Socket, Session) {
+        function loginController( $timeout, $state, Auth, Session, $http) {
 
             var login = this;
             login.user = {
@@ -11,26 +11,32 @@
                 password: ''
             };
 
-            login.isInvalid = false;
-
-            Socket.on("sockid", function(data){
-                login.isInvalid = !data;  
-                login.user = {
-                    username: '',
-                    password: ''
-                };
-            });
-
             login.doSubmit = function(){
 
-                Auth.doLogin(login.user);
-
-                //A few millis are needed to initialize isAuthenticated()
-                $timeout(function(){
-                   if(Auth.isAuthenticated()){
-                        $state.go('dashboard');
+                $http({
+                    method: "POST",
+                    url:"/api/login",
+                    data: login.user
+                }).then(function(res){
+                    if(res.data.id){
+                        Session.create(res.data.id, res.data.username);
+                        //A few millis are needed to initialize isAuthenticated()
+                        $timeout(function(){
+                            $state.go('dashboard');
+                        }, 500);
                     }
-                }, 500);
+                    else{
+            
+                        login.invalid = res.data;
+                        $timeout(function(){
+                            login.invalid = null;
+                            login.user = {
+                                username: '',
+                                password: ''
+                            };
+                        }, 3000);
+                    }
+                });
             };
         };
 }());

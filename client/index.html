@@ -43,6 +43,8 @@
     <script src="vendor/ui-bootstrap.js"></script>
     <script src="vendor/ui-bootstrap-tpls.js"></script>
 
+    <script src="dist/ng-scrollbar.min.js"></script>
+    <link rel="stylesheet" href="dist/ng-scrollbar.min.css" >
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -50,40 +52,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <style type="text/css">
-      body{
-        background-color: #F9F5F5;
-        color:#383838;
-      }
 
-      footer ul{
-        margin-top: 10%;
-      }
-
-      .horizontal-list  li, footer li{
-        display:inline
-      }
-
-      #featured  div{
-        display: inline-block;
-      }
-      #featured  span{
-        color:#33DEFC;
-      }
-      .bigger-icon{
-        font-size:900% 
-      }
-      .bigger-font{
-        font-size:300%
-      }
-      .no-style{
-        color: inherit;  
-      }
-
- .test{
-  background-color: yellow;
- }
-    </style>
   </head>
 
   <body>
@@ -97,15 +66,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#/home">Project name</a>
+          <a class="navbar-brand" href="#/home">Chat App</a>
         </div>
-        <div   class="navbar-collapse collapse">
+      
+        <div  class="navbar-collapse collapse">
          <div class="container-fluid">
           <ul class="nav navbar-nav navbar-right">
             <li nav-link ng-repeat="address in home.nav"> <li/>
           </ul>
         </div> 
+       </div>
+ 
       </div>
+
     </nav>
 
     <div class="container">
@@ -114,7 +87,7 @@
     </div> 
 
     <div ng-controller="homeController as home">
-      <footer class="visible-lg">
+      <footer ng-if="home.switchMenu" class="visible-lg">
 
         <p class="" style="margin:55px 0px -25px 120px">
           &copy; 2016 Company, Inc. &middot; <br> 
@@ -128,25 +101,27 @@
         </form>
         </p>
         <div class="row col-lg-6 col-md-offset-3">
-         <ul class="">
-          <li style="padding-left: 70px" nav-link ng-repeat="address in home.nav"> <li />
+          <ul ng-if="home.nav" class="nav navbar-nav navbar-right">
+            <li nav-link ng-repeat="address in home.nav"> <li />
           </ul>
-        </div> 
 
+         <ul ng-if="dashboard.nav" class="nav navbar-nav navbar-right">
+            <li nav-link ng-repeat="address in dashboard.nav"> <li />
+         </ul>
+        </div> 
 
       </footer>
 
-<footer class="hidden-lg">
-  <div class="row col-md-12 col-xs-3 col-xs-offset-6 col-sm-offset-1   ">
-     <ul class="nav navbar-nav navbar-right">
-            <li nav-link ng-repeat="address in home.nav"> <li />
-          </ul>
-  </div> 
-  <div class="row">
-    <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </div>  
-</footer>
+      <footer ng-if="home.switchMenu" class="hidden-lg">
+        <div class="row col-md-12 col-xs-3 col-xs-offset-6 col-sm-offset-1   ">
+          
+
+        </div> 
+        <div class="row">
+          <p class="pull-right"><a href="#">Back to top</a></p>
+              <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </div>  
+      </footer>
 </div>
 
 
@@ -157,6 +132,8 @@
     <script type="text/javascript" src="app/common/services/socket-service.js"></script> 
     <script type="text/javascript" src="app/common/services/message-handler-service.js"></script>
     <script type="text/javascript" src="app/common/services/user-service.js"></script> 
+    <script type="text/javascript" src="app/common/services/interests-service.js"></script> 
+    <script type="text/javascript" src="app/common/services/load-menu-service.js"></script> 
     
     <!-- App Modules -->
     <script src="app/chat.app.js"></script>
@@ -171,6 +148,7 @@
     <script type="text/javascript" src="app/dashboard/directives/file-upload-directive.js"></script>
     <script type="text/javascript" src="app/dashboard/directives/change-pic-directive.js"></script>
     <script type="text/javascript" src="app/home/directives/nav-link-directive.js"></script>
+    <script type="text/javascript" src="app/register/directives/delete-interests.js"></script>
   
     <script type="text/javascript" src="app/interests/directives/interest-element-directive.js"></script>
     <script type="text/javascript" src="app/interests/directives/interest-searchbox-directive.js"></script>

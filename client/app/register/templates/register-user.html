@@ -1,25 +1,30 @@
 <div class="row">
 <div class="form-group col-md-7">
   <label  >Name</label>
-  <input type="name" class="form-control "  ng-model="register.newUser.name" >
+  <input type="text" class="form-control "  ng-model="register.newUser.name" >
 </div>
 </div>
 <div class="row">
 <div class="form-group col-md-9">
   <label  >Last Name</label>
-  <input type="name" class="form-control "  ng-model="register.newUser.lastName" >
+  <input type="text" class="form-control "  ng-model="register.newUser.lastName" >
 </div>
 </div>
 <div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-4">
     <label  >Nick</label>
-    <input type="email" class="form-control"   ng-model="register.newUser.username">
+    <input type="text" class="form-control"   ng-model="register.newUser.username" ng-blur="register.doUsernameCheck()">
+  </div>
+
+  <div  class="form-group col-md-6 error-response" ng-show="register.isTaken" >
+    <div >{{register.isTaken}}</div>
   </div>
  </div>
  <br>
-<div class="form-group col-md-8">
+
+<div class="form-group col-md-7 col-md-offset-1">
       <div class="col-md-offset-2">
-        <a ui-sref="register.account" class="btn btn-block btn-primary"> Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        <a ui-sref="register.account" class="btn btn-block btn-primary"> Next  &nbsp;  <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>
     </div>
 </div>

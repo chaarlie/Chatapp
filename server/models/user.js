@@ -7,7 +7,8 @@ var UserSchema = new Schema({
     name: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true},
-    pic: {type: String, default: ''}
+    pic: {type: String, default: ''},
+    interests: {type: Object, default: {}}
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -3,8 +3,9 @@
 		.factory('Socket', ['$rootScope', '$location', Socket]);
 
 	function Socket($rootScope, $location) {
-		var socket = io.connect();
 
+		var socket = io();
+       
 		function on(eventName, callback) {
 			function wrapper() {
 				var args = arguments;
@@ -57,6 +58,7 @@
 		};
 
 		return {
+			//init: init,
 			on: on,
 			emit: emit,
 			socketStreamEmit: socketStreamEmit,
