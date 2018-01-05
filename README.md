@@ -4,12 +4,15 @@ This is a simple instant messaging application
 
 ## How To
 
-Run npm i
-Run node server
+<ul>
+	<li> run npm i</li>
+	<li> run node server</li>
+</ul>
 
 ## Technologies
-
-Node.js
-Angular 1.6
-Mongoose 
-Socket.io
+<ul>
+	<li>Node.js</li>
+	<li>Angular 1.6</li>
+	<li>Mongoose </li>
+	<li>Socket.io</li>
+</ul>
