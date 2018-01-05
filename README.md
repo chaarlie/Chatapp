@@ -1,3 +1,15 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+# Description
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+This is a simple instant messaging application
+
+## How To
+
+Run npm i
+Run node server
+
+## Technologies
+
+Node.js
+Angular 1.6
+Mongoose 
+Socket.io
