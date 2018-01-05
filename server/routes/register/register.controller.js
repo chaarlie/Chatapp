@@ -4,6 +4,7 @@ var User = require('../../models/user');
 exports.registerUser = function(req, res){
   console.log(req.body.newUser);
 
+
   var entry = new User({
         username: req.body.username,
         password: req.body.password,
