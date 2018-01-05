@@ -14,7 +14,6 @@ exports.login = function(req, res){
           }
 
           if(!doc){
-            console.log("i run here");
             res.end("Invalid credentials");
           }
 
