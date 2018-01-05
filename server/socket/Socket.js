@@ -35,6 +35,7 @@ module.exports = function (io, session) {
     };
   }
 
+
   io.sockets.on('connection', function (s) {
     socket = s;
 
